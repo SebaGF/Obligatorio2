@@ -5,9 +5,11 @@ import java.util.ArrayList;
 public class Sistema {
 
     private ArrayList<Restaurante> lstRestaurantes;
+    private ArrayList<Evaluacion> lstEvaluacion;
 
     public Sistema() {
         this.lstRestaurantes = new ArrayList();
+        this.lstEvaluacion = new ArrayList();
     }
 
     public ArrayList<Restaurante> getLstRestaurantes() {
