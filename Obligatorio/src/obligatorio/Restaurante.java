@@ -62,7 +62,7 @@ public class Restaurante {
 
     @Override
     public String toString() {
-        return "Nombre: " + nombre + ", direccion: " + direccion + ", horario: " + horarioInicio + " - " + horarioFin + ", tipo de comida: " + tipoComida;
+        return  nombre.toUpperCase() + "  |  " + direccion.toUpperCase() + "  |  " + horarioInicio + " - " + horarioFin + "  |  " + tipoComida.toUpperCase();
     }
     
     

@@ -4,12 +4,16 @@ import java.util.ArrayList;
 
 public class Sistema {
 
-    private ArrayList lstRestaurantes;
+    private ArrayList<Restaurante> lstRestaurantes;
 
     public Sistema() {
         this.lstRestaurantes = new ArrayList();
     }
 
+    public ArrayList<Restaurante> getLstRestaurantes() {
+        return lstRestaurantes;
+    }
+    
     public boolean validarStringNoVacio(String dato, int min, int max) {
         boolean ok;
         ok = false;
