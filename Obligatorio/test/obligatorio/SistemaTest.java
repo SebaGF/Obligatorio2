@@ -1,5 +1,6 @@
 
-import obligatorio.Sistema;
+package obligatorio;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -29,6 +30,8 @@ public class SistemaTest {
     public void tearDown() {
     }
 
+    
+    
     @Test
     public void validarStringNoVacioNula(){
         Sistema s = new Sistema();
@@ -107,4 +110,5 @@ public class SistemaTest {
         boolean result = s.validarHorario("20:30");
         assertEquals(true, result);
     }
+    
 }
