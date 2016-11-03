@@ -7,19 +7,22 @@ public class Evaluacion {
     private int catnidadEstrellas;
     private String reseña;
     private String nombre;
+    private String mail;
     private Restaurante unRestaurante;
     private Icon estrellas;
 
     public Evaluacion() {
     }
 
-    public Evaluacion(int catnidadEstrellas, String reseña, String nombre, Restaurante unRestaurante) {
+    public Evaluacion(int catnidadEstrellas, String reseña, String nombre, String mail, Restaurante unRestaurante, Icon estrellas) {
         this.catnidadEstrellas = catnidadEstrellas;
         this.reseña = reseña;
         this.nombre = nombre;
+        this.mail = mail;
         this.unRestaurante = unRestaurante;
+        this.estrellas = estrellas;
     }
-
+    
     public int getCatnidadEstrellas() {
         return catnidadEstrellas;
     }
@@ -44,6 +47,14 @@ public class Evaluacion {
         this.nombre = nombre;
     }
 
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
     public Restaurante getUnRestaurante() {
         return unRestaurante;
     }
@@ -59,6 +70,8 @@ public class Evaluacion {
     public void setEstrellas(Icon estrellas) {
         this.estrellas = estrellas;
     }
+    
+    
 
     @Override
     public String toString() {
