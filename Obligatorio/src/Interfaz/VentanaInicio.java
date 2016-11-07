@@ -10,10 +10,8 @@ import javax.swing.JOptionPane;
 
 public class VentanaInicio extends javax.swing.JFrame {
 
-    public VentanaInicio(Sistema s, JFrame ventanaPadre) {
+    public VentanaInicio(Sistema s) {
         this.miSistema = s;
-        this.ventanaPadre = ventanaPadre;
-        this.ventanaPadre.setVisible(false);
         initComponents();
         cargarRestaurantes();
     }
@@ -53,7 +51,6 @@ public class VentanaInicio extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         txtTipoDeComida = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
-        jButton1 = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
@@ -111,13 +108,6 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         jLabel5.setText("Tipo de comida");
 
-        jButton1.setText("Volver");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         btnEditar.setText("Editar");
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -133,9 +123,7 @@ public class VentanaInicio extends javax.swing.JFrame {
             .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
             .addComponent(jSeparator3)
             .addGroup(jPaneFichaRestauranteLayout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(41, 412, Short.MAX_VALUE)
                 .addComponent(btnEditar)
                 .addGap(41, 41, 41))
             .addGroup(jPaneFichaRestauranteLayout.createSequentialGroup()
@@ -210,10 +198,8 @@ public class VentanaInicio extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPaneFichaRestauranteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(btnEditar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btnEditar)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Fichas de restaurantes", jPaneFichaRestaurante);
@@ -357,44 +343,43 @@ public class VentanaInicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarRestauranteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarRestauranteActionPerformed
-        Restaurante r = new Restaurante();
-        if (miSistema.validarStringNoVacio(txtNombreNuevo.getText(), 1, Integer.MAX_VALUE)) {
-            if (miSistema.validarStringNoVacio(txtDireccionNuevo.getText(), 1, Integer.MAX_VALUE)) {
-                if (miSistema.validarHorario(txtHoraInicioNuevo.getText())) {
-                    if (miSistema.validarHorario(txtHoraFinalNuevo.getText())) {
-                        if (miSistema.validarStringNoVacio(txtTipoDeComidaNuevo.getText(), 1, Integer.MAX_VALUE)) {
-                            r.setNombre(txtNombreNuevo.getText());
-                            r.setDireccion(txtDireccionNuevo.getText());
-                            r.setHorarioInicio(txtHoraInicioNuevo.getText());
-                            r.setHorarioFin(txtHoraFinalNuevo.getText());
-                            r.setTipoComida(txtTipoDeComidaNuevo.getText());
-                            miSistema.getLstRestaurantes().add(r);
-                            txtNombreNuevo.setText("");
-                            txtDireccionNuevo.setText("");
-                            txtHoraInicioNuevo.setText("");
-                            txtHoraFinalNuevo.setText("");
-                            txtTipoDeComidaNuevo.setText("");
-
-                            JOptionPane.showMessageDialog(this, "El restaurante se ha ingresado correctamente");
-                            this.dispose();
-                            ventanaPadre.setVisible(true);
-                        } else {
-                            JOptionPane.showMessageDialog(this, "Tipo de comida ingresado no valido");
-
-                        }
-                    } else {
-                        JOptionPane.showMessageDialog(this, "Horario final ingresado no valido");
-
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(this, "Horario inicial ingresado no valido");
-                }
-            } else {
-                JOptionPane.showMessageDialog(this, "Direccion de restaurante ingresad no valido");
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Nombre de restaurante ingresado no valido");
-        }
+//        Restaurante r = new Restaurante();
+//        if (miSistema.validarStringNoVacio(txtNombreNuevo.getText(), 1, Integer.MAX_VALUE)) {
+//            if (miSistema.validarStringNoVacio(txtDireccionNuevo.getText(), 1, Integer.MAX_VALUE)) {
+//                if (miSistema.validarHorario(txtHoraInicioNuevo.getText())) {
+//                    if (miSistema.validarHorario(txtHoraFinalNuevo.getText())) {
+//                        if (miSistema.validarStringNoVacio(txtTipoDeComidaNuevo.getText(), 1, Integer.MAX_VALUE)) {
+//                            r.setNombre(txtNombreNuevo.getText());
+//                            r.setDireccion(txtDireccionNuevo.getText());
+//                            r.setHorarioInicio(txtHoraInicioNuevo.getText());
+//                            r.setHorarioFin(txtHoraFinalNuevo.getText());
+//                            r.setTipoComida(txtTipoDeComidaNuevo.getText());
+//                            miSistema.getLstRestaurantes().add(r);
+//                            txtNombreNuevo.setText("");
+//                            txtDireccionNuevo.setText("");
+//                            txtHoraInicioNuevo.setText("");
+//                            txtHoraFinalNuevo.setText("");
+//                            txtTipoDeComidaNuevo.setText("");
+//
+//                            JOptionPane.showMessageDialog(this, "El restaurante se ha ingresado correctamente");
+//                           
+//                        } else {
+//                            JOptionPane.showMessageDialog(this, "Tipo de comida ingresado no valido");
+//
+//                        }
+//                    } else {
+//                        JOptionPane.showMessageDialog(this, "Horario final ingresado no valido");
+//
+//                    }
+//                } else {
+//                    JOptionPane.showMessageDialog(this, "Horario inicial ingresado no valido");
+//                }
+//            } else {
+//                JOptionPane.showMessageDialog(this, "Direccion de restaurante ingresad no valido");
+//            }
+//        } else {
+//            JOptionPane.showMessageDialog(this, "Nombre de restaurante ingresado no valido");
+//        }
     }//GEN-LAST:event_btnAgregarRestauranteActionPerformed
 
     private void txtDireccionNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionNuevoActionPerformed
@@ -403,70 +388,62 @@ public class VentanaInicio extends javax.swing.JFrame {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
 
-        if (lstRestaurantes.getSelectedIndex() > -1) {
+//        if (lstRestaurantes.getSelectedIndex() > -1) {
+//
+//            Restaurante r;
+//            r = miSistema.getLstRestaurantes().get(lstRestaurantes.getSelectedIndex());
+//            boolean cambio;
+//            cambio = false;
+//            if (       !(r.getNombre().equalsIgnoreCase(txtNombre.getText()) )
+//                || !(r.getDireccion().equalsIgnoreCase(txtDireccion.getText()))
+//                || !(r.getHorarioInicio().equals(txtHoraInicio.getText()))
+//                || !(r.getHorarioFin().equals(txtHoraFin.getText()))
+//                || !(r.getTipoComida().equalsIgnoreCase(txtTipoDeComida.getText()))) {
+//                cambio = true;
+//            }
 
-            Restaurante r;
-            r = miSistema.getLstRestaurantes().get(lstRestaurantes.getSelectedIndex());
-            boolean cambio;
-            cambio = false;
-            if (       !(r.getNombre().equalsIgnoreCase(txtNombre.getText()) )
-                || !(r.getDireccion().equalsIgnoreCase(txtDireccion.getText()))
-                || !(r.getHorarioInicio().equals(txtHoraInicio.getText()))
-                || !(r.getHorarioFin().equals(txtHoraFin.getText()))
-                || !(r.getTipoComida().equalsIgnoreCase(txtTipoDeComida.getText()))) {
-                cambio = true;
-            }
-
-            if (miSistema.validarStringNoVacio(txtNombre.getText(), 1, Integer.MAX_VALUE)) {
-                if (miSistema.validarStringNoVacio(txtDireccion.getText(), 1, Integer.MAX_VALUE)) {
-                    if (miSistema.validarHorario(txtHoraInicio.getText())) {
-                        if (miSistema.validarHorario(txtHoraFin.getText())) {
-                            if (miSistema.validarStringNoVacio(txtTipoDeComida.getText(), 1, Integer.MAX_VALUE)) {
-                                r.setNombre(txtNombre.getText());
-                                r.setDireccion(txtDireccion.getText());
-                                r.setHorarioInicio(txtHoraInicio.getText());
-                                r.setHorarioFin(txtHoraFin.getText());
-                                r.setTipoComida(txtTipoDeComida.getText());
-
-                                if (cambio) {
-                                    JOptionPane.showMessageDialog(this, "El restaurante se ha editado correctamente");
-                                    txtNombre.setText("");
-                                    txtDireccion.setText("");
-                                    txtHoraInicio.setText("");
-                                    txtHoraFin.setText("");
-                                    txtTipoDeComida.setText("");
-                                    this.dispose();
-                                    ventanaPadre.setVisible(true);
-                                } else {
-                                    JOptionPane.showMessageDialog(this, "Debe editar algun campo");
-                                }
-
-                            } else {
-                                JOptionPane.showMessageDialog(this, "Tipo de comida ingresado no valido");
-
-                            }
-                        } else {
-                            JOptionPane.showMessageDialog(this, "Horario final ingresado no valido");
-
-                        }
-                    } else {
-                        JOptionPane.showMessageDialog(this, "Horario inicial ingresado no valido");
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(this, "Direccion de restaurante ingresad no valido");
-                }
-            } else {
-                JOptionPane.showMessageDialog(this, "Nombre de restaurante ingresado no valido");
-            }
-        }
+//            if (miSistema.validarStringNoVacio(txtNombre.getText(), 1, Integer.MAX_VALUE)) {
+//                if (miSistema.validarStringNoVacio(txtDireccion.getText(), 1, Integer.MAX_VALUE)) {
+//                    if (miSistema.validarHorario(txtHoraInicio.getText())) {
+//                        if (miSistema.validarHorario(txtHoraFin.getText())) {
+//                            if (miSistema.validarStringNoVacio(txtTipoDeComida.getText(), 1, Integer.MAX_VALUE)) {
+//                                r.setNombre(txtNombre.getText());
+//                                r.setDireccion(txtDireccion.getText());
+//                                r.setHorarioInicio(txtHoraInicio.getText());
+//                                r.setHorarioFin(txtHoraFin.getText());
+//                                r.setTipoComida(txtTipoDeComida.getText());
+//
+//                                if (cambio) {
+//                                    JOptionPane.showMessageDialog(this, "El restaurante se ha editado correctamente");
+//                                    txtNombre.setText("");
+//                                    txtDireccion.setText("");
+//                                    txtHoraInicio.setText("");
+//                                    txtHoraFin.setText("");
+//                                    txtTipoDeComida.setText("");
+//                                  
+//                                } else {
+//                                    JOptionPane.showMessageDialog(this, "Debe editar algun campo");
+//                                }
+//
+//                            } else {
+//                                JOptionPane.showMessageDialog(this, "Tipo de comida ingresado no valido");
+//
+//                            }
+//                        } else {
+//                            JOptionPane.showMessageDialog(this, "Horario final ingresado no valido");
+//
+//                        }
+//                    } else {
+//                        JOptionPane.showMessageDialog(this, "Horario inicial ingresado no valido");
+//                    }
+//                } else {
+//                    JOptionPane.showMessageDialog(this, "Direccion de restaurante ingresad no valido");
+//                }
+//            } else {
+//                JOptionPane.showMessageDialog(this, "Nombre de restaurante ingresado no valido");
+//            }
+//        }
     }//GEN-LAST:event_btnEditarActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-        this.setVisible(false);
-        ventanaPadre.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txtNombreCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtNombreCaretUpdate
 
@@ -474,20 +451,19 @@ public class VentanaInicio extends javax.swing.JFrame {
 
     private void lstRestaurantesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstRestaurantesValueChanged
         // TODO add your handling code here:
-        Restaurante r1 = miSistema.getLstRestaurantes().get(lstRestaurantes.getSelectedIndex());
-
-        txtNombre.setText(r1.getNombre().toUpperCase());
-        txtDireccion.setText(r1.getDireccion().toUpperCase());
-        txtHoraInicio.setText(r1.getHorarioInicio());
-        txtHoraFin.setText(r1.getHorarioFin());
-        txtTipoDeComida.setText(r1.getTipoComida().toUpperCase());
+//        Restaurante r1 = miSistema.getLstRestaurantes().get(lstRestaurantes.getSelectedIndex());
+//
+//        txtNombre.setText(r1.getNombre().toUpperCase());
+//        txtDireccion.setText(r1.getDireccion().toUpperCase());
+//        txtHoraInicio.setText(r1.getHorarioInicio());
+//        txtHoraFin.setText(r1.getHorarioFin());
+//        txtTipoDeComida.setText(r1.getTipoComida().toUpperCase());
     }//GEN-LAST:event_lstRestaurantesValueChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarRestaurante;
     private javax.swing.JButton btnEditar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -529,5 +505,4 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JTextField txtTipoDeComidaNuevo;
     // End of variables declaration//GEN-END:variables
 Sistema miSistema;
-    JFrame ventanaPadre;
 }

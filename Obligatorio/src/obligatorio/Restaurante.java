@@ -1,22 +1,19 @@
-
 package obligatorio;
 
-
 public class Restaurante {
+
     private String nombre;
     private String direccion;
-    private String horarioInicio;
-    private String horarioFin;
+    private ManejadorHorario horarios;
     private String tipoComida;
 
     public Restaurante() {
     }
 
-    public Restaurante(String nombre, String direccion, String horarioInicio, String horarioFin, String tipoComida) {
+    public Restaurante(String nombre, String direccion, ManejadorHorario horario, String tipoComida) {
         this.nombre = nombre;
         this.direccion = direccion;
-        this.horarioInicio = horarioInicio;
-        this.horarioFin = horarioFin;
+        this.horarios = horario;
         this.tipoComida = tipoComida;
     }
 
@@ -36,22 +33,14 @@ public class Restaurante {
         this.direccion = unaDireccion;
     }
 
-    public String getHorarioInicio() {
-        return horarioInicio;
+    public ManejadorHorario getHorarios() {
+        return horarios;
     }
 
-    public void setHorarioInicio(String unHorarioInicio) {
-        this.horarioInicio = unHorarioInicio;
+    public void setHorarios(ManejadorHorario horarios) {
+        this.horarios = horarios;
     }
-
-    public String getHorarioFin() {
-        return horarioFin;
-    }
-
-    public void setHorarioFin(String unHorarioFin) {
-        this.horarioFin = unHorarioFin;
-    }
-
+    
     public String getTipoComida() {
         return tipoComida;
     }
@@ -62,8 +51,6 @@ public class Restaurante {
 
     @Override
     public String toString() {
-        return  nombre.toUpperCase() + "  |  " + direccion.toUpperCase() + "  |  " + horarioInicio + " - " + horarioFin + "  |  " + tipoComida.toUpperCase();
+        return nombre.toUpperCase() + "  |  " + direccion.toUpperCase()+ "  |  " + tipoComida.toUpperCase();
     }
-    
-    
 }
