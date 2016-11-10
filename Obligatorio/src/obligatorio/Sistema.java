@@ -6,15 +6,27 @@ public class Sistema {
 
     private ArrayList<Restaurante> lstRestaurantes;
     private ArrayList<Evaluacion> lstEvaluacion;
+    private ArrayList<Evaluacion> lstEvaluacionSorteo;
+    
 
     public Sistema() {
         this.lstRestaurantes = new ArrayList();
         this.lstEvaluacion = new ArrayList();
+        lstEvaluacionSorteo = new ArrayList<>();
     }
 
     public ArrayList<Restaurante> getLstRestaurantes() {
         return lstRestaurantes;
     }
+
+    public ArrayList<Evaluacion> getLstEvaluacion() {
+        return lstEvaluacion;
+    }
+
+    public ArrayList<Evaluacion> getLstEvaluacionSorteo() {
+        return lstEvaluacionSorteo;
+    }
+    
     
     public boolean validarStringNoVacio(String dato, int min, int max) {
         boolean ok;

@@ -1,5 +1,8 @@
 package obligatorio;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import javax.swing.Icon;
 
 public class Evaluacion {
@@ -9,20 +12,34 @@ public class Evaluacion {
     private String nombre;
     private String mail;
     private Restaurante unRestaurante;
-    private Icon estrellas;
+    private String fecha;
 
     public Evaluacion() {
+        this.catnidadEstrellas = 0;
+        this.reseña = "Sin-Reseña";
+        this.nombre = "Sin-Nombre";
+        this.mail = "Sin-Mail";
+        this.unRestaurante = null;
+        this.fecha = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
     }
 
-    public Evaluacion(int catnidadEstrellas, String reseña, String nombre, String mail, Restaurante unRestaurante, Icon estrellas) {
+    public Evaluacion(int catnidadEstrellas, String reseña, String nombre, String mail, Restaurante unRestaurante) {
         this.catnidadEstrellas = catnidadEstrellas;
         this.reseña = reseña;
         this.nombre = nombre;
         this.mail = mail;
         this.unRestaurante = unRestaurante;
-        this.estrellas = estrellas;
+        this.fecha =new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
     }
-    
+    public Evaluacion(int cantidadEstrellas, String reseña, Restaurante unRestaurante){
+        this.catnidadEstrellas = cantidadEstrellas;
+        this.reseña = reseña;
+        this.mail = "Sin-Mail";
+        this.nombre = "Anónima";
+        this.unRestaurante = unRestaurante;
+        this.fecha = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
+    }
+
     public int getCatnidadEstrellas() {
         return catnidadEstrellas;
     }
@@ -63,15 +80,22 @@ public class Evaluacion {
         this.unRestaurante = unRestaurante;
     }
 
-    public Icon getEstrellas() {
-        return estrellas;
+    public String getFecha() {
+        return fecha;
     }
 
-    public void setEstrellas(Icon estrellas) {
-        this.estrellas = estrellas;
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
     }
     
-    
+    public boolean validarCantidadEstrellas(int estrellas) {
+        boolean ok;
+        ok = false;
+        if (estrellas > 0 && estrellas < 6) {
+            ok = true;
+        }
+        return ok;
+    }
 
     @Override
     public String toString() {
