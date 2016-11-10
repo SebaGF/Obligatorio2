@@ -7,15 +7,55 @@ public class ManejadorHorario {
     private String[] dias = {"Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sabado", "Domingo"};
     java.util.List<java.util.Map.Entry<String, String>> horarios = new java.util.ArrayList<>();
 
+    public String[] getDias() {
+        return dias;
+    }
+
+    public void setDias(String[] dias) {
+        this.dias = dias;
+    }
+
+    public List<Map.Entry<String, String>> getHorarios() {
+        return horarios;
+    }
+
+    public void setHorarios(List<Map.Entry<String, String>> horarios) {
+        this.horarios = horarios;
+    }
+
+    
+    
+    
+    
     public ManejadorHorario() {
-        
+
         for (int i = 0; i < dias.length; i++) {
-           
+
             Map.Entry<String, String> horario = new AbstractMap.SimpleEntry<>(dias[i], new Horario().getFormatoHorario());
             this.horarios.add(horario);
         }
+
+    }
+
+//    public void cargarHorario(String dia, String horaInicio, String horaFin) {
+//        Map.Entry<String, String> aux = obtenerHorario(dia);
+//        String texto= horaInicio+" - "+ horaFin ;
+//        aux.setValue(texto);
+//        
+//
+//    }
+
+    public void cargarHorario(String dia, String horaInicio, String horaFin) {
+       
+        for (int i = 0; i < horarios.size(); i++) {
+            if (horarios.get(i).getKey().equals(dia)) {
+                 horarios.get(i).setValue(horaInicio + " - " + horaFin);
+            }
+
+        }
         
     }
+
     public boolean validarHorario(String horario) {
         boolean ok;
         ok = false;

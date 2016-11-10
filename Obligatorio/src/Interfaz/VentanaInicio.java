@@ -1,4 +1,4 @@
-package Interfaz;
+﻿package Interfaz;
 
 import java.awt.Image;
 import java.util.ArrayList;
@@ -60,6 +60,15 @@ public class VentanaInicio extends javax.swing.JFrame {
         lstRestaurantesEvaluar.setModel(modelo);
     }
 
+    public void cargarListaHorarios(Restaurante r) {
+        DefaultListModel modelo = new DefaultListModel();
+        Iterator it = r.getHorarios().getHorarios().iterator();
+        while (it.hasNext()) {
+            modelo.addElement(it.next());
+        }
+        lstHorarios.setModel(modelo);
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -70,23 +79,27 @@ public class VentanaInicio extends javax.swing.JFrame {
         jPaneFichaRestaurante = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        lstRestaurantes = new javax.swing.JList<>();
+        lstRestaurantes = new javax.swing.JList<String>();
         txtNombre = new javax.swing.JTextField();
         txtDireccion = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
-        txtHoraInicio = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        txtHoraFin = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        txtApertura = new javax.swing.JTextField();
+        txtCierre = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel5 = new javax.swing.JLabel();
         txtTipoDeComida = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
         btnEditar = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        lstHorarios = new javax.swing.JList();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        btnCargarHorarioModificado = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
@@ -96,16 +109,12 @@ public class VentanaInicio extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
         jLabel12 = new javax.swing.JLabel();
-        txtHoraInicioNuevo = new javax.swing.JTextField();
-        jLabel13 = new javax.swing.JLabel();
-        txtHoraFinalNuevo = new javax.swing.JTextField();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
         jSeparator5 = new javax.swing.JSeparator();
         jLabel16 = new javax.swing.JLabel();
         txtTipoDeComidaNuevo = new javax.swing.JTextField();
         btnAgregarRestaurante = new javax.swing.JButton();
         jSeparator7 = new javax.swing.JSeparator();
+
         jpEvaluarRestaurante = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         lstRestaurantesEvaluar = new javax.swing.JList<>();
@@ -159,12 +168,6 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         jLabel4.setText("Horarios");
 
-        jLabel6.setText("-");
-
-        jLabel8.setText("HH:MM");
-
-        jLabel7.setText("HH:MM");
-
         jLabel5.setText("Tipo de comida");
 
         btnEditar.setText("Editar");
@@ -174,54 +177,82 @@ public class VentanaInicio extends javax.swing.JFrame {
             }
         });
 
+        lstHorarios.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                lstHorariosValueChanged(evt);
+            }
+        });
+        jScrollPane2.setViewportView(lstHorarios);
+
+        jLabel6.setText("Apertura");
+
+        jLabel7.setText("Cierre");
+
+        jLabel8.setText("h");
+
+        jLabel14.setText("h");
+
+        btnCargarHorarioModificado.setText("Cargar");
+        btnCargarHorarioModificado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCargarHorarioModificadoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPaneFichaRestauranteLayout = new javax.swing.GroupLayout(jPaneFichaRestaurante);
         jPaneFichaRestaurante.setLayout(jPaneFichaRestauranteLayout);
         jPaneFichaRestauranteLayout.setHorizontalGroup(
             jPaneFichaRestauranteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator1)
             .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(jSeparator3)
-            .addGroup(jPaneFichaRestauranteLayout.createSequentialGroup()
-                .addGap(41, 412, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPaneFichaRestauranteLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnEditar)
-                .addGap(41, 41, 41))
+                .addContainerGap())
+            .addComponent(jSeparator3)
             .addGroup(jPaneFichaRestauranteLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPaneFichaRestauranteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPaneFichaRestauranteLayout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(16, 16, 16)
+                        .addComponent(txtTipoDeComida, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPaneFichaRestauranteLayout.createSequentialGroup()
                         .addGroup(jPaneFichaRestauranteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1)
                             .addGroup(jPaneFichaRestauranteLayout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPaneFichaRestauranteLayout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(jPaneFichaRestauranteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPaneFichaRestauranteLayout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(jPaneFichaRestauranteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPaneFichaRestauranteLayout.createSequentialGroup()
-                                                .addComponent(txtHoraInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jLabel6))
-                                            .addComponent(jLabel7))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(jPaneFichaRestauranteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtHoraFin, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel8)))
-                                    .addGroup(jPaneFichaRestauranteLayout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 131, Short.MAX_VALUE)))
-                        .addContainerGap())
-                    .addGroup(jPaneFichaRestauranteLayout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(16, 16, 16)
-                        .addComponent(txtTipoDeComida, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                                        .addGap(40, 40, 40)
+                                        .addComponent(jLabel6)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtApertura, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel8)
+                                        .addGap(37, 37, 37)
+                                        .addComponent(jLabel7)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtCierre, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel14))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPaneFichaRestauranteLayout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 500, Short.MAX_VALUE)
+                                        .addComponent(btnCargarHorarioModificado)))))
+                        .addContainerGap())))
         );
         jPaneFichaRestauranteLayout.setVerticalGroup(
             jPaneFichaRestauranteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -238,27 +269,38 @@ public class VentanaInicio extends javax.swing.JFrame {
                     .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
-                .addGroup(jPaneFichaRestauranteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtHoraInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtHoraFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPaneFichaRestauranteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(jPaneFichaRestauranteLayout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addGroup(jPaneFichaRestauranteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(txtApertura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCierre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel14))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPaneFichaRestauranteLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPaneFichaRestauranteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPaneFichaRestauranteLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(btnCargarHorarioModificado))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)))
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(jPaneFichaRestauranteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtTipoDeComida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(56, 56, 56)
                 .addComponent(btnEditar)
+
                 .addContainerGap(210, Short.MAX_VALUE))
+
         );
 
         jTabbedPane1.addTab("Fichas de restaurantes", jPaneFichaRestaurante);
@@ -278,12 +320,6 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         jLabel12.setText("Horarios");
 
-        jLabel13.setText("-");
-
-        jLabel14.setText("HH:MM");
-
-        jLabel15.setText("HH:MM");
-
         jLabel16.setText("Tipo de Comida");
 
         btnAgregarRestaurante.setText("Agregar Restaurante");
@@ -293,17 +329,31 @@ public class VentanaInicio extends javax.swing.JFrame {
             }
         });
 
+        cmbDias.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sabado", "Domingo" }));
+
+        cmbHorarioInicio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00h", "01h", "02h", "03h", "04h", "05h", "06h", "07h", "08h", "09h", "10h", "11h", "12h", "13h", "14h", "15h", "16h", "17h", "18h", "19h", "20h", "21h", "22h", "23h" }));
+
+        cmbHorarioFinal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00h", "01h", "02h", "03h", "04h", "05h", "06h", "07h", "08h", "09h", "10h", "11h", "12h", "13h", "14h", "15h", "16h", "17h", "18h", "19h", "20h", "21h", "22h", "23h" }));
+
+        jLabel13.setText("Apertura");
+
+        jLabel17.setText("Cierre");
+
+        btnCargarHorario.setText("Cargar Horario");
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator4)
             .addComponent(jSeparator5)
+            .addComponent(jSeparator7)
+            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -314,27 +364,28 @@ public class VentanaInicio extends javax.swing.JFrame {
                                 .addComponent(txtDireccionNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtHoraInicioNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel14))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cmbDias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                                 .addComponent(jLabel13)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtHoraFinalNuevo)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cmbHorarioInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel17)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cmbHorarioFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(143, 143, 143))
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addComponent(jLabel16)
                                 .addGap(60, 60, 60)
                                 .addComponent(txtTipoDeComidaNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 2, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnAgregarRestaurante)))
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnAgregarRestaurante, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnCargarHorario, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addContainerGap())
-            .addComponent(jSeparator7)
-            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -352,14 +403,14 @@ public class VentanaInicio extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(txtHoraInicioNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbDias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbHorarioInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbHorarioFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13)
-                    .addComponent(txtHoraFinalNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel17))
+                .addGap(22, 22, 22)
+                .addComponent(btnCargarHorario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(jLabel15))
-                .addGap(31, 31, 31)
                 .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -367,7 +418,7 @@ public class VentanaInicio extends javax.swing.JFrame {
                     .addComponent(jLabel16))
                 .addGap(21, 21, 21)
                 .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 180, Short.MAX_VALUE)
                 .addComponent(btnAgregarRestaurante)
                 .addGap(23, 23, 23))
         );
@@ -596,11 +647,15 @@ public class VentanaInicio extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 971, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -652,6 +707,7 @@ public class VentanaInicio extends javax.swing.JFrame {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
 
+<<<<<<< HEAD
 //        if (lstRestaurantes.getSelectedIndex() > -1) {
 //
 //            Restaurante r;
@@ -706,21 +762,18 @@ public class VentanaInicio extends javax.swing.JFrame {
 //                JOptionPane.showMessageDialog(this, "Nombre de restaurante ingresado no valido");
 //            }
 //        }
+
     }//GEN-LAST:event_btnEditarActionPerformed
 
-    private void txtNombreCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtNombreCaretUpdate
-
-    }//GEN-LAST:event_txtNombreCaretUpdate
-
     private void lstRestaurantesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstRestaurantesValueChanged
-        // TODO add your handling code here:
-//        Restaurante r1 = miSistema.getLstRestaurantes().get(lstRestaurantes.getSelectedIndex());
-//
-//        txtNombre.setText(r1.getNombre().toUpperCase());
-//        txtDireccion.setText(r1.getDireccion().toUpperCase());
-//        txtHoraInicio.setText(r1.getHorarioInicio());
-//        txtHoraFin.setText(r1.getHorarioFin());
-//        txtTipoDeComida.setText(r1.getTipoComida().toUpperCase());
+//         TODO add your handling code here:
+        Restaurante r1 = miSistema.getLstRestaurantes().get(lstRestaurantes.getSelectedIndex());
+
+        txtNombre.setText(r1.getNombre().toUpperCase());
+        txtDireccion.setText(r1.getDireccion().toUpperCase());
+        cargarListaHorarios(r1);
+
+        txtTipoDeComida.setText(r1.getTipoComida().toUpperCase());
     }//GEN-LAST:event_lstRestaurantesValueChanged
 
     private void rbEstrella1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbEstrella1MouseClicked
@@ -822,20 +875,71 @@ public class VentanaInicio extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnEvaluarActionPerformed
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    //Cagadas Were made
+    
+    
+    
+    
+    
+    
+    
+    private void lstHorariosValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstHorariosValueChanged
+        if (lstRestaurantes.getSelectedIndex() >= 0) {
+            Restaurante r1 = miSistema.getLstRestaurantes().get(lstRestaurantes.getSelectedIndex());
+
+            for (int i = 0; i < r1.getHorarios().getHorarios().size(); i++) {
+                if (r1.getHorarios().getHorarios().get(i).getKey().equals(r1.getHorarios().getDias()[lstHorarios.getSelectedIndex()])) {
+                    String horarios[] = r1.getHorarios().getHorarios().get(i).getValue().split(" - ");
+                    txtApertura.setText(horarios[0]);
+                    txtCierre.setText(horarios[1]);
+
+                }
+
+            }
+        }
+
+    }//GEN-LAST:event_lstHorariosValueChanged
+
+    private void btnCargarHorarioModificadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarHorarioModificadoActionPerformed
+        if (!txtApertura.getText().equals("") || !txtCierre.getText().equals("")) {
+            Restaurante r1 = miSistema.getLstRestaurantes().get(lstRestaurantes.getSelectedIndex());
+            r1.getHorarios().cargarHorario(r1.getHorarios().getDias()[lstHorarios.getSelectedIndex()], txtApertura.getText(), txtCierre.getText());
+            cargarListaHorarios(r1);
+        }
+    }//GEN-LAST:event_btnCargarHorarioModificadoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.ButtonGroup bnGrupoEstrellas;
     private javax.swing.JButton btnAgregarRestaurante;
+    private javax.swing.JButton btnCargarHorario;
+    private javax.swing.JButton btnCargarHorarioModificado;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEvaluar;
     private javax.swing.JComboBox<String> cmbDominios;
+    private javax.swing.JComboBox cmbDias;
+    private javax.swing.JComboBox cmbHorarioFinal;
+    private javax.swing.JComboBox cmbHorarioInicio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
@@ -885,6 +989,12 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JTextField txtHoraFinalNuevo;
     private javax.swing.JTextField txtHoraInicio;
     private javax.swing.JTextField txtHoraInicioNuevo;
+    private javax.swing.JList lstHorarios;
+    private javax.swing.JList<String> lstRestaurantes;
+    private javax.swing.JTextField txtApertura;
+    private javax.swing.JTextField txtCierre;
+    private javax.swing.JTextField txtDireccion;
+    private javax.swing.JTextField txtDireccionNuevo;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtNombreEvaluar;
     private javax.swing.JTextField txtNombreNuevo;
