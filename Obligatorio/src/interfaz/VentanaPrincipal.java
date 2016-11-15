@@ -122,7 +122,7 @@ Sistema miSistema;
         if (ae.getSource() == btnEvaluacion) {
             //creo el panel de evaluar y lo cargo al panel local
             VentanaEvaluacion e = new VentanaEvaluacion(miSistema);
-            e.setSize(this.jPMostrar.getSize());
+            e.setSize(this.jPMostrar.getWidth(),this.jPMostrar.getHeight());
             e.setLocation(1,1);
             jPMostrar.removeAll();
             jPMostrar.add(e,BorderLayout.CENTER);
