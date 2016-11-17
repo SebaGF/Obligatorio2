@@ -129,5 +129,15 @@ Sistema miSistema;
             jPMostrar.revalidate();
             jPMostrar.repaint();
         }
+         if (ae.getSource() == btnCrearFicha) {
+            //creo el panel de evaluar y lo cargo al panel local
+            CrearRestaurante r = new CrearRestaurante(miSistema);
+            r.setSize(this.jPMostrar.getWidth(),this.jPMostrar.getHeight());
+            r.setLocation(1,1);
+            jPMostrar.removeAll();
+            jPMostrar.add(r,BorderLayout.CENTER);
+            jPMostrar.revalidate();
+            jPMostrar.repaint();
+        }
     }
 }
