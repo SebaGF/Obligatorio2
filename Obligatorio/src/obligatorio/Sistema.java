@@ -40,6 +40,18 @@ public class Sistema {
         }
         return ok;
     }
+    
+    public boolean estaRestaurante(String dir){
+        boolean esta;
+        esta = false;
+        for (int i = 0; i <lstRestaurantes.size(); i++) {
+            if(lstRestaurantes.get(i).getDireccion().equals(dir)){
+                esta = true;
+            }
+        }
+        
+        return esta;
+    }
 
    
 
