@@ -1,6 +1,7 @@
 package interfaz;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import obligatorio.Sistema;
@@ -14,6 +15,8 @@ public class VentanaPrincipal extends javax.swing.JFrame implements ActionListen
         btnCrearFicha.addActionListener(this);
         btnFichaRestaurante.addActionListener(this);
         btnEvaluacion.addActionListener(this);
+        this.setMinimumSize(new Dimension(500, 500));
+        this.setResizable(false);
     }
 
     /**
