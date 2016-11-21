@@ -3,7 +3,6 @@ package interfaz;
 import java.awt.Color;
 import java.awt.Image;
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 import obligatorio.*;
 
 public class CrearRestaurante extends javax.swing.JPanel {
@@ -212,9 +211,7 @@ public class CrearRestaurante extends javax.swing.JPanel {
                 .addContainerGap(48, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-    public void Imagen(ImageIcon i) {
-        this.setSize(200, 200);
-    }
+
 
     private void btnCrearRestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearRestActionPerformed
         Restaurante r = new Restaurante();
