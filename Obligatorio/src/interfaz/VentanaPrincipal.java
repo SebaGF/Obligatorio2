@@ -35,6 +35,7 @@ public class VentanaPrincipal extends javax.swing.JFrame implements ActionListen
         btnCrearFicha = new javax.swing.JButton();
         btnEvaluacion = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
+        btnDefinicionSorteo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,6 +69,13 @@ public class VentanaPrincipal extends javax.swing.JFrame implements ActionListen
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
+        btnDefinicionSorteo.setText("Definicion de sorteo");
+        btnDefinicionSorteo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDefinicionSorteoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -76,7 +84,8 @@ public class VentanaPrincipal extends javax.swing.JFrame implements ActionListen
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnFichaRestaurante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnCrearFicha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnEvaluacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnEvaluacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnDefinicionSorteo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -91,7 +100,9 @@ public class VentanaPrincipal extends javax.swing.JFrame implements ActionListen
                 .addComponent(btnFichaRestaurante)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEvaluacion)
-                .addContainerGap(208, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnDefinicionSorteo)
+                .addContainerGap(179, Short.MAX_VALUE))
             .addComponent(jPMostrar, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
             .addComponent(jSeparator1)
         );
@@ -113,8 +124,23 @@ public class VentanaPrincipal extends javax.swing.JFrame implements ActionListen
     private void btnFichaRestauranteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFichaRestauranteActionPerformed
         // TODO add your handling code here:        
     }//GEN-LAST:event_btnFichaRestauranteActionPerformed
+
+    private void btnDefinicionSorteoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDefinicionSorteoActionPerformed
+      //if (ae.getSource() == btnDefinicionSorteo) {
+            //creo el panel de evaluar y lo cargo al panel local
+            VentanaSorteo vs = new VentanaSorteo(miSistema);
+            vs.setSize(this.jPMostrar.getWidth(),this.jPMostrar.getHeight());
+            vs.setLocation(1,1);
+            jPMostrar.removeAll();
+            jPMostrar.add(vs,BorderLayout.CENTER);
+            jPMostrar.revalidate();
+            jPMostrar.repaint();
+        //}
+    }//GEN-LAST:event_btnDefinicionSorteoActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCrearFicha;
+    private javax.swing.JButton btnDefinicionSorteo;
     private javax.swing.JButton btnEvaluacion;
     private javax.swing.JButton btnFichaRestaurante;
     private javax.swing.JPanel jPMostrar;
@@ -146,5 +172,6 @@ Sistema miSistema;
             jPMostrar.revalidate();
             jPMostrar.repaint();
         }
+         
     }
 }

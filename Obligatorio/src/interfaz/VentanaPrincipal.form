@@ -43,6 +43,7 @@
                       <Component id="btnFichaRestaurante" max="32767" attributes="0"/>
                       <Component id="btnCrearFicha" max="32767" attributes="0"/>
                       <Component id="btnEvaluacion" max="32767" attributes="0"/>
+                      <Component id="btnDefinicionSorteo" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jSeparator1" min="-2" max="-2" attributes="0"/>
@@ -60,7 +61,9 @@
                   <Component id="btnFichaRestaurante" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="btnEvaluacion" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="208" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="btnDefinicionSorteo" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="179" max="32767" attributes="0"/>
               </Group>
               <Component id="jPMostrar" alignment="0" pref="300" max="32767" attributes="0"/>
               <Component id="jSeparator1" alignment="0" max="32767" attributes="0"/>
@@ -118,6 +121,14 @@
             </Property>
             <Property name="orientation" type="int" value="1"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnDefinicionSorteo">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Definicion de sorteo"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDefinicionSorteoActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
