@@ -1,11 +1,9 @@
 package interfaz;
 
 import java.awt.*;
-import java.util.Enumeration;
+import java.util.*;
 import javax.swing.*;
-import obligatorio.Evaluacion;
-import obligatorio.Restaurante;
-import obligatorio.Sistema;
+import obligatorio.*;
 
 public class VentanaEvaluacion extends javax.swing.JPanel {
 
@@ -15,10 +13,14 @@ public class VentanaEvaluacion extends javax.swing.JPanel {
         ImageIcon estrellaAmarilla = new ImageIcon(getClass().getResource("/imagenes/estrella.png"));
         ImageIcon estrellaVacia = new ImageIcon(getClass().getResource("/imagenes/estrellav.png"));
         ImageIcon iconoError = new ImageIcon(getClass().getResource("/imagenes/error.png"));
-        amarilla = new ImageIcon(estrellaAmarilla.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
-        vacia = new ImageIcon(estrellaVacia.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
-        error = new ImageIcon(iconoError.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+        ImageIcon iconoEvaluar = new ImageIcon(getClass().getResource("/imagenes/confirmar.png"));
+        ImageIcon evaluar = new ImageIcon(iconoEvaluar.getImage().getScaledInstance(50, -1, Image.SCALE_DEFAULT));
+        amarilla = new ImageIcon(estrellaAmarilla.getImage().getScaledInstance(40, -1, Image.SCALE_DEFAULT));
+        vacia = new ImageIcon(estrellaVacia.getImage().getScaledInstance(40, -1, Image.SCALE_DEFAULT));
+        error = new ImageIcon(iconoError.getImage().getScaledInstance(40, -1, Image.SCALE_DEFAULT));
+        btnEvaluar.setIcon(evaluar);
         cargarIconos();
+        cargarRestaurantes();
     }
 
     public JRadioButton getSelection(ButtonGroup group) {
@@ -31,12 +33,20 @@ public class VentanaEvaluacion extends javax.swing.JPanel {
         return null;
     }
 
+    public void cargarRestaurantes() {
+        DefaultListModel modelo = new DefaultListModel();
+        Iterator it = miSistema.getLstRestaurantes().iterator();
+        while (it.hasNext()) {
+
+            modelo.addElement(it.next());
+        }
+        lstRestaurantes.setModel(modelo);
+    }
+
     public void cargarIconos() {
 
         lblErrorEstrella.setIcon(error);
-        lblErrorLista.setSize(50, 50);
         lblErrorLista.setIcon(error);
-        lblErrorEstrella.setSize(50, 50);
         lblErrorEstrella.setVisible(false);
         lblErrorLista.setVisible(false);
         btnEstrella1.setIcon(vacia);
@@ -62,20 +72,27 @@ public class VentanaEvaluacion extends javax.swing.JPanel {
         lblErrorEstrella = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtAReseña = new javax.swing.JTextArea();
-        lbRestaurantes = new javax.swing.JLabel();
-        lbEstrellas = new javax.swing.JLabel();
         lbResenia = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         txtMail = new javax.swing.JTextField();
         cmbDominio = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
         jLabel3 = new javax.swing.JLabel();
         btnEvaluar = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
+        jSeparator4 = new javax.swing.JSeparator();
+        jSeparator5 = new javax.swing.JSeparator();
+
+        setMaximumSize(new java.awt.Dimension(500, 500));
+        setMinimumSize(new java.awt.Dimension(500, 500));
+        setPreferredSize(new java.awt.Dimension(500, 500));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jScrollPane1.setViewportView(lstRestaurantes);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 290, 83));
 
         grupoEstrellas.add(btnEstrella1);
         btnEstrella1.setFont(new java.awt.Font("Tahoma", 0, 5)); // NOI18N
@@ -84,6 +101,7 @@ public class VentanaEvaluacion extends javax.swing.JPanel {
                 btnEstrella1ActionPerformed(evt);
             }
         });
+        add(btnEstrella1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, -1, -1));
 
         grupoEstrellas.add(btnEstrella2);
         btnEstrella2.setFont(new java.awt.Font("Tahoma", 0, 5)); // NOI18N
@@ -92,6 +110,7 @@ public class VentanaEvaluacion extends javax.swing.JPanel {
                 btnEstrella2ActionPerformed(evt);
             }
         });
+        add(btnEstrella2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, -1, -1));
 
         grupoEstrellas.add(btnEstrella3);
         btnEstrella3.setFont(new java.awt.Font("Tahoma", 0, 5)); // NOI18N
@@ -100,6 +119,7 @@ public class VentanaEvaluacion extends javax.swing.JPanel {
                 btnEstrella3ActionPerformed(evt);
             }
         });
+        add(btnEstrella3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, -1, -1));
 
         grupoEstrellas.add(btnEstrella4);
         btnEstrella4.setFont(new java.awt.Font("Tahoma", 0, 5)); // NOI18N
@@ -108,6 +128,7 @@ public class VentanaEvaluacion extends javax.swing.JPanel {
                 btnEstrella4ActionPerformed(evt);
             }
         });
+        add(btnEstrella4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, -1, -1));
 
         grupoEstrellas.add(btnEstrella5);
         btnEstrella5.setFont(new java.awt.Font("Tahoma", 0, 5)); // NOI18N
@@ -116,151 +137,89 @@ public class VentanaEvaluacion extends javax.swing.JPanel {
                 btnEstrella5ActionPerformed(evt);
             }
         });
+        add(btnEstrella5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 110, -1, -1));
+        add(lblErrorLista, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 30, 40, 40));
+        add(lblErrorEstrella, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 110, 40, 40));
 
         txtAReseña.setColumns(10);
         txtAReseña.setLineWrap(true);
         txtAReseña.setRows(5);
         jScrollPane2.setViewportView(txtAReseña);
 
-        lbRestaurantes.setText("Restaurantes");
-
-        lbEstrellas.setText("Estrellas");
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, 188, 57));
 
         lbResenia.setText("Reseña");
+        add(lbResenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, -1, -1));
+        add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 270, 100, -1));
+        add(txtMail, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 300, 100, -1));
 
         cmbDominio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "@Hotmail.com", "@Gmail.com" }));
+        add(cmbDominio, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 300, -1, -1));
 
         jLabel1.setText("Nombre");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 270, -1, -1));
 
         jLabel2.setText("Email");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 300, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Datos opcionales");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 430, -1));
 
-        btnEvaluar.setText("Evaluar");
+        btnEvaluar.setBorderPainted(false);
+        btnEvaluar.setContentAreaFilled(false);
+        btnEvaluar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEvaluar.setFocusable(false);
+        btnEvaluar.setMaximumSize(new java.awt.Dimension(128, 128));
+        btnEvaluar.setPreferredSize(new java.awt.Dimension(128, 128));
         btnEvaluar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEvaluarActionPerformed(evt);
             }
         });
+        add(btnEvaluar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 340, 100, 90));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addGap(54, 54, 54)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtMail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cmbDominio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbRestaurantes)
-                            .addComponent(lbEstrellas)
-                            .addComponent(lbResenia))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btnEstrella1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnEstrella2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnEstrella3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnEstrella4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnEstrella5)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(lblErrorEstrella, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE)))
-                                .addGap(0, 0, 0))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                                .addComponent(lblErrorLista, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jSeparator2)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnEvaluar))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(lbRestaurantes))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(lblErrorLista, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblErrorEstrella, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnEstrella1)
-                            .addComponent(btnEstrella2)
-                            .addComponent(btnEstrella3)
-                            .addComponent(btnEstrella4)
-                            .addComponent(btnEstrella5)
-                            .addComponent(lbEstrellas))))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(lbResenia)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbDominio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnEvaluar)
-                .addGap(16, 16, 16))
-        );
+        jSeparator2.setAlignmentX(0.0F);
+        jSeparator2.setAlignmentY(0.0F);
+        jSeparator2.setMaximumSize(new java.awt.Dimension(500, 500));
+        jSeparator2.setName(""); // NOI18N
+        jSeparator2.setPreferredSize(new java.awt.Dimension(500, 500));
+        add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 330, 10));
+
+        jSeparator3.setAlignmentX(0.0F);
+        jSeparator3.setAlignmentY(0.0F);
+        jSeparator3.setMaximumSize(new java.awt.Dimension(500, 500));
+        jSeparator3.setName(""); // NOI18N
+        jSeparator3.setPreferredSize(new java.awt.Dimension(500, 500));
+        add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 330, 330, 20));
+
+        jSeparator4.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jSeparator4.setAlignmentX(0.0F);
+        jSeparator4.setAlignmentY(0.0F);
+        jSeparator4.setMaximumSize(new java.awt.Dimension(500, 500));
+        jSeparator4.setName(""); // NOI18N
+        jSeparator4.setPreferredSize(new java.awt.Dimension(500, 500));
+        add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 20, 170));
+
+        jSeparator5.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jSeparator5.setAlignmentX(0.0F);
+        jSeparator5.setAlignmentY(0.0F);
+        jSeparator5.setMaximumSize(new java.awt.Dimension(500, 500));
+        jSeparator5.setName(""); // NOI18N
+        jSeparator5.setPreferredSize(new java.awt.Dimension(500, 500));
+        add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 160, 20, 170));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEvaluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEvaluarActionPerformed
         boolean listaRestaurantesOk;
         boolean estrellasOk;
+        boolean terminoEval;
         JRadioButton jrb = getSelection(grupoEstrellas);
         listaRestaurantesOk = false;
         estrellasOk = false;
-        new VentanaEvaluacion(miSistema);
+        terminoEval = false;
+
         if (lstRestaurantes.getSelectedIndex() > -1) {
             listaRestaurantesOk = true;
             lblErrorLista.setVisible(false);
@@ -292,16 +251,22 @@ public class VentanaEvaluacion extends javax.swing.JPanel {
 
                             miSistema.getLstEvaluacion().add(ev);
                             miSistema.getLstEvaluacionSorteo().add(ev);
-                            this.removeAll();
-                            this.repaint();
+                            terminoEval = true;
                         }
                     }
                 } else {
                     miSistema.getLstEvaluacion().add(ev);
-                    this.removeAll();
-                    this.repaint();
+                    terminoEval = true;
                 }
             }
+        }
+        if (terminoEval) {
+            cargarRestaurantes();
+            cargarIconos();
+            txtAReseña.setText("");
+            txtNombre.setText("");
+            txtMail.setText("");
+            cmbDominio.setSelectedItem(0);
         }
     }//GEN-LAST:event_btnEvaluarActionPerformed
 
@@ -365,11 +330,11 @@ public class VentanaEvaluacion extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JLabel lbEstrellas;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
     private javax.swing.JLabel lbResenia;
-    private javax.swing.JLabel lbRestaurantes;
     private javax.swing.JLabel lblErrorEstrella;
     private javax.swing.JLabel lblErrorLista;
     private javax.swing.JList<String> lstRestaurantes;
@@ -377,7 +342,7 @@ public class VentanaEvaluacion extends javax.swing.JPanel {
     private javax.swing.JTextField txtMail;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
-private Sistema miSistema;
+    private Sistema miSistema;
     private ImageIcon amarilla;
     private ImageIcon vacia;
     private ImageIcon error;

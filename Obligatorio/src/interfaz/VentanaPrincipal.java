@@ -17,6 +17,7 @@ public class VentanaPrincipal extends javax.swing.JFrame implements ActionListen
         btnEvaluacion.addActionListener(this);
         this.setMinimumSize(new Dimension(500, 500));
         this.setResizable(false);
+        
     }
 
     /**
@@ -44,11 +45,16 @@ public class VentanaPrincipal extends javax.swing.JFrame implements ActionListen
             }
         });
 
+        jPMostrar.setAlignmentX(0.0F);
+        jPMostrar.setAlignmentY(0.0F);
+        jPMostrar.setMaximumSize(new java.awt.Dimension(500, 500));
+        jPMostrar.setPreferredSize(new java.awt.Dimension(500, 500));
+
         javax.swing.GroupLayout jPMostrarLayout = new javax.swing.GroupLayout(jPMostrar);
         jPMostrar.setLayout(jPMostrarLayout);
         jPMostrarLayout.setHorizontalGroup(
             jPMostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 577, Short.MAX_VALUE)
+            .addGap(0, 500, Short.MAX_VALUE)
         );
         jPMostrarLayout.setVerticalGroup(
             jPMostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -86,7 +92,7 @@ public class VentanaPrincipal extends javax.swing.JFrame implements ActionListen
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEvaluacion)
                 .addContainerGap(208, Short.MAX_VALUE))
-            .addComponent(jPMostrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPMostrar, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
             .addComponent(jSeparator1)
         );
 
@@ -94,9 +100,7 @@ public class VentanaPrincipal extends javax.swing.JFrame implements ActionListen
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
