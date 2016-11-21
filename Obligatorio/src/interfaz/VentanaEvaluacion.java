@@ -15,15 +15,19 @@ public class VentanaEvaluacion extends javax.swing.JPanel {
         ImageIcon iconoError = new ImageIcon(getClass().getResource("/imagenes/error.png"));
         ImageIcon iconoEvaluar = new ImageIcon(getClass().getResource("/imagenes/confirmar.png"));
         ImageIcon evaluar = new ImageIcon(iconoEvaluar.getImage().getScaledInstance(50, -1, Image.SCALE_DEFAULT));
-        amarilla = new ImageIcon(estrellaAmarilla.getImage().getScaledInstance(40, -1, Image.SCALE_DEFAULT));
-        vacia = new ImageIcon(estrellaVacia.getImage().getScaledInstance(40, -1, Image.SCALE_DEFAULT));
-        error = new ImageIcon(iconoError.getImage().getScaledInstance(40, -1, Image.SCALE_DEFAULT));
+        amarilla = new ImageIcon(estrellaAmarilla.getImage().getScaledInstance(35, -1, Image.SCALE_DEFAULT));
+        vacia = new ImageIcon(estrellaVacia.getImage().getScaledInstance(35, -1, Image.SCALE_DEFAULT));
+        error = new ImageIcon(iconoError.getImage().getScaledInstance(35, -1, Image.SCALE_DEFAULT));
         btnEvaluar.setIcon(evaluar);
         cargarIconos();
         cargarRestaurantes();
+        this.jPDatosOpcionales.setVisible(false);
+        jCNo.setSelected(true);
+        cantEstrellas = 0;
+        datosOpcionales = false;
     }
 
-    public JRadioButton getSelection(ButtonGroup group) {
+    private JRadioButton getSelection(ButtonGroup group) {
         for (Enumeration e = group.getElements(); e.hasMoreElements();) {
             JRadioButton b = (JRadioButton) e.nextElement();
             if (b.getModel() == group.getSelection()) {
@@ -33,7 +37,7 @@ public class VentanaEvaluacion extends javax.swing.JPanel {
         return null;
     }
 
-    public void cargarRestaurantes() {
+    private void cargarRestaurantes() {
         DefaultListModel modelo = new DefaultListModel();
         Iterator it = miSistema.getLstRestaurantes().iterator();
         while (it.hasNext()) {
@@ -43,12 +47,18 @@ public class VentanaEvaluacion extends javax.swing.JPanel {
         lstRestaurantes.setModel(modelo);
     }
 
-    public void cargarIconos() {
+    public final void cargarIconos() {
 
         lblErrorEstrella.setIcon(error);
         lblErrorLista.setIcon(error);
+        lblErrorEmail.setIcon(error);
+        lblErrorNombre.setIcon(error);
+        lblErrorResenia.setIcon(error);
         lblErrorEstrella.setVisible(false);
         lblErrorLista.setVisible(false);
+        lblErrorEmail.setVisible(false);
+        lblErrorNombre.setVisible(false);
+        lblErrorResenia.setVisible(false);
         btnEstrella1.setIcon(vacia);
         btnEstrella2.setIcon(vacia);
         btnEstrella3.setIcon(vacia);
@@ -61,6 +71,7 @@ public class VentanaEvaluacion extends javax.swing.JPanel {
     private void initComponents() {
 
         grupoEstrellas = new javax.swing.ButtonGroup();
+        tipoDeEvaluacion = new javax.swing.ButtonGroup();
         jScrollPane1 = new javax.swing.JScrollPane();
         lstRestaurantes = new javax.swing.JList<>();
         btnEstrella1 = new javax.swing.JRadioButton();
@@ -70,20 +81,25 @@ public class VentanaEvaluacion extends javax.swing.JPanel {
         btnEstrella5 = new javax.swing.JRadioButton();
         lblErrorLista = new javax.swing.JLabel();
         lblErrorEstrella = new javax.swing.JLabel();
+        btnEvaluar = new javax.swing.JButton();
+        jPDatosOpcionales = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtAReseña = new javax.swing.JTextArea();
-        lbResenia = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         txtMail = new javax.swing.JTextField();
-        cmbDominio = new javax.swing.JComboBox<>();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        btnEvaluar = new javax.swing.JButton();
-        jSeparator2 = new javax.swing.JSeparator();
-        jSeparator3 = new javax.swing.JSeparator();
-        jSeparator4 = new javax.swing.JSeparator();
-        jSeparator5 = new javax.swing.JSeparator();
+        lbResenia = new javax.swing.JLabel();
+        cmbDominio = new javax.swing.JComboBox<>();
+        lblErrorResenia = new javax.swing.JLabel();
+        lblErrorNombre = new javax.swing.JLabel();
+        lblErrorEmail = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jCSi = new javax.swing.JCheckBox();
+        jCNo = new javax.swing.JCheckBox();
+        lblResultado = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(500, 500));
         setMinimumSize(new java.awt.Dimension(500, 500));
@@ -92,7 +108,7 @@ public class VentanaEvaluacion extends javax.swing.JPanel {
 
         jScrollPane1.setViewportView(lstRestaurantes);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 290, 83));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 290, 83));
 
         grupoEstrellas.add(btnEstrella1);
         btnEstrella1.setFont(new java.awt.Font("Tahoma", 0, 5)); // NOI18N
@@ -141,32 +157,6 @@ public class VentanaEvaluacion extends javax.swing.JPanel {
         add(lblErrorLista, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 30, 40, 40));
         add(lblErrorEstrella, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 110, 40, 40));
 
-        txtAReseña.setColumns(10);
-        txtAReseña.setLineWrap(true);
-        txtAReseña.setRows(5);
-        jScrollPane2.setViewportView(txtAReseña);
-
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, 188, 57));
-
-        lbResenia.setText("Reseña");
-        add(lbResenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, -1, -1));
-        add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 270, 100, -1));
-        add(txtMail, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 300, 100, -1));
-
-        cmbDominio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "@Hotmail.com", "@Gmail.com" }));
-        add(cmbDominio, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 300, -1, -1));
-
-        jLabel1.setText("Nombre");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 270, -1, -1));
-
-        jLabel2.setText("Email");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 300, -1, -1));
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Datos opcionales");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 430, -1));
-
         btnEvaluar.setBorderPainted(false);
         btnEvaluar.setContentAreaFilled(false);
         btnEvaluar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -178,47 +168,84 @@ public class VentanaEvaluacion extends javax.swing.JPanel {
                 btnEvaluarActionPerformed(evt);
             }
         });
-        add(btnEvaluar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 340, 100, 90));
+        add(btnEvaluar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 350, 100, 90));
 
-        jSeparator2.setAlignmentX(0.0F);
-        jSeparator2.setAlignmentY(0.0F);
-        jSeparator2.setMaximumSize(new java.awt.Dimension(500, 500));
-        jSeparator2.setName(""); // NOI18N
-        jSeparator2.setPreferredSize(new java.awt.Dimension(500, 500));
-        add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 330, 10));
+        jPDatosOpcionales.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jPDatosOpcionales.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jSeparator3.setAlignmentX(0.0F);
-        jSeparator3.setAlignmentY(0.0F);
-        jSeparator3.setMaximumSize(new java.awt.Dimension(500, 500));
-        jSeparator3.setName(""); // NOI18N
-        jSeparator3.setPreferredSize(new java.awt.Dimension(500, 500));
-        add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 330, 330, 20));
+        jLabel1.setText("Nombre (5 - 21)");
+        jPDatosOpcionales.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
 
-        jSeparator4.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jSeparator4.setAlignmentX(0.0F);
-        jSeparator4.setAlignmentY(0.0F);
-        jSeparator4.setMaximumSize(new java.awt.Dimension(500, 500));
-        jSeparator4.setName(""); // NOI18N
-        jSeparator4.setPreferredSize(new java.awt.Dimension(500, 500));
-        add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 20, 170));
+        txtAReseña.setColumns(10);
+        txtAReseña.setLineWrap(true);
+        txtAReseña.setRows(5);
+        jScrollPane2.setViewportView(txtAReseña);
 
-        jSeparator5.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jSeparator5.setAlignmentX(0.0F);
-        jSeparator5.setAlignmentY(0.0F);
-        jSeparator5.setMaximumSize(new java.awt.Dimension(500, 500));
-        jSeparator5.setName(""); // NOI18N
-        jSeparator5.setPreferredSize(new java.awt.Dimension(500, 500));
-        add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 160, 20, 170));
+        jPDatosOpcionales.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 188, 57));
+        jPDatosOpcionales.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 100, 20));
+        jPDatosOpcionales.add(txtMail, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 100, 20));
+
+        jLabel2.setText("Email (6 - 21)");
+        jPDatosOpcionales.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
+
+        lbResenia.setText("Reseña (6 - 201)");
+        jPDatosOpcionales.add(lbResenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
+
+        cmbDominio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "@Hotmail.com", "@Gmail.com" }));
+        jPDatosOpcionales.add(cmbDominio, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 120, -1, -1));
+        jPDatosOpcionales.add(lblErrorResenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 30, -1, -1));
+        jPDatosOpcionales.add(lblErrorNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, 40, 30));
+        jPDatosOpcionales.add(lblErrorEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 120, -1, -1));
+
+        add(jPDatosOpcionales, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 430, 160));
+
+        jLabel4.setText("Restaurantes (*)");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, -1));
+
+        jLabel5.setText("Estrellas (*)");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, -1, -1));
+
+        jLabel6.setText("Datos Opcionales ");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, -1, -1));
+
+        tipoDeEvaluacion.add(jCSi);
+        jCSi.setText("Si");
+        jCSi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCSiActionPerformed(evt);
+            }
+        });
+        add(jCSi, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, -1, -1));
+
+        tipoDeEvaluacion.add(jCNo);
+        jCNo.setText("No");
+        jCNo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCNoActionPerformed(evt);
+            }
+        });
+        add(jCNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, -1, -1));
+
+        lblResultado.setForeground(java.awt.Color.green);
+        lblResultado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        add(lblResultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 450, 430, 10));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEvaluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEvaluarActionPerformed
         boolean listaRestaurantesOk;
         boolean estrellasOk;
         boolean terminoEval;
+        boolean nombreOk;
+        boolean mailOk;
+        boolean reseniaOk;
         JRadioButton jrb = getSelection(grupoEstrellas);
         listaRestaurantesOk = false;
         estrellasOk = false;
         terminoEval = false;
+        nombreOk = false;
+        mailOk = false;
+        reseniaOk = false;
+        lblResultado.setText("");
 
         if (lstRestaurantes.getSelectedIndex() > -1) {
             listaRestaurantesOk = true;
@@ -240,19 +267,58 @@ public class VentanaEvaluacion extends javax.swing.JPanel {
             estrellasOk = false;
             lblErrorEstrella.setVisible(true);
         }
+        if (datosOpcionales) {
+            if (miSistema.validarStringNoVacio(txtNombre.getText(), 4, 21)) {
+                lblErrorNombre.setVisible(false);
+                nombreOk = true;
+            } else {
+                lblErrorNombre.setVisible(true);
+                nombreOk = false;
+            }
+            if (miSistema.validarStringNoVacio(txtAReseña.getText(), 5, 201)) {
+                lblErrorResenia.setVisible(false);
+                reseniaOk = true;
+            } else {
+                lblErrorResenia.setVisible(true);
+                reseniaOk = false;
+            }
+            if (miSistema.validarStringNoVacio(txtMail.getText(), 5, 21)) {
+                if (listaRestaurantesOk) {
+                    Restaurante r = miSistema.getLstRestaurantes().get(lstRestaurantes.getSelectedIndex());
+                    System.out.println(miSistema.estaEvaluacionSorteo(txtMail.getText(), r.getDireccion()));
+                    if (!miSistema.estaEvaluacionSorteo(txtMail.getText(), r.getDireccion())) {
+                        mailOk = true;
+                        lblErrorEmail.setVisible(false);
+                    } else {
+                        lblErrorEmail.setVisible(true);
+                        mailOk = false;
+                    }
+                }
+            } else {
+                lblErrorEmail.setVisible(true);
+                mailOk = false;
+            }
+        }
         if (estrellasOk && listaRestaurantesOk) {
             Restaurante r = miSistema.getLstRestaurantes().get(lstRestaurantes.getSelectedIndex());
             Evaluacion ev = new Evaluacion();
+            ev.setUnRestaurante(r);
             if (ev.validarCantidadEstrellas(cantEstrellas)) {
                 ev.setCatnidadEstrellas(cantEstrellas);
-                if (miSistema.validarStringNoVacio(txtAReseña.getText(), 0, 200)) {
-                    if (miSistema.validarStringNoVacio(txtNombre.getText(), 3, 20)) {
-                        if (miSistema.validarStringNoVacio(txtMail.getText(), 4, 20)) {
 
-                            miSistema.getLstEvaluacion().add(ev);
-                            miSistema.getLstEvaluacionSorteo().add(ev);
-                            terminoEval = true;
-                        }
+                if (datosOpcionales) {
+
+                    if (nombreOk && reseniaOk && mailOk) {
+
+                        ev.setResenia(txtAReseña.getText());
+                        ev.setNombre(txtNombre.getText());
+                        ev.setMail(txtMail.getText());
+                        miSistema.getLstEvaluacion().add(ev);
+                        miSistema.getLstEvaluacionSorteo().add(ev);
+                        terminoEval = true;
+                        jCNo.setSelected(true);
+                        this.jPDatosOpcionales.setVisible(false);
+
                     }
                 } else {
                     miSistema.getLstEvaluacion().add(ev);
@@ -263,10 +329,12 @@ public class VentanaEvaluacion extends javax.swing.JPanel {
         if (terminoEval) {
             cargarRestaurantes();
             cargarIconos();
+            grupoEstrellas.clearSelection();
             txtAReseña.setText("");
             txtNombre.setText("");
             txtMail.setText("");
             cmbDominio.setSelectedItem(0);
+            lblResultado.setText("Evaluacion realizada con éxito");
         }
     }//GEN-LAST:event_btnEvaluarActionPerformed
 
@@ -315,6 +383,19 @@ public class VentanaEvaluacion extends javax.swing.JPanel {
         cantEstrellas = 5;
     }//GEN-LAST:event_btnEstrella5ActionPerformed
 
+    private void jCSiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCSiActionPerformed
+        jPDatosOpcionales.setVisible(true);
+        datosOpcionales = true;
+        lblErrorNombre.setVisible(false);
+        lblErrorResenia.setVisible(false);
+        lblErrorEmail.setVisible(false);
+    }//GEN-LAST:event_jCSiActionPerformed
+
+    private void jCNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCNoActionPerformed
+        jPDatosOpcionales.setVisible(false);
+        datosOpcionales = false;
+    }//GEN-LAST:event_jCNoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton btnEstrella1;
@@ -325,19 +406,25 @@ public class VentanaEvaluacion extends javax.swing.JPanel {
     private javax.swing.JButton btnEvaluar;
     private javax.swing.JComboBox<String> cmbDominio;
     private javax.swing.ButtonGroup grupoEstrellas;
+    private javax.swing.JCheckBox jCNo;
+    private javax.swing.JCheckBox jCSi;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPDatosOpcionales;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JSeparator jSeparator5;
     private javax.swing.JLabel lbResenia;
+    private javax.swing.JLabel lblErrorEmail;
     private javax.swing.JLabel lblErrorEstrella;
     private javax.swing.JLabel lblErrorLista;
+    private javax.swing.JLabel lblErrorNombre;
+    private javax.swing.JLabel lblErrorResenia;
+    private javax.swing.JLabel lblResultado;
     private javax.swing.JList<String> lstRestaurantes;
+    private javax.swing.ButtonGroup tipoDeEvaluacion;
     private javax.swing.JTextArea txtAReseña;
     private javax.swing.JTextField txtMail;
     private javax.swing.JTextField txtNombre;
@@ -346,5 +433,6 @@ public class VentanaEvaluacion extends javax.swing.JPanel {
     private ImageIcon amarilla;
     private ImageIcon vacia;
     private ImageIcon error;
-    private int cantEstrellas = 0;
+    private int cantEstrellas;
+    private boolean datosOpcionales;
 }
