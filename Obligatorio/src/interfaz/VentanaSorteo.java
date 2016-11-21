@@ -4,6 +4,7 @@ import java.awt.Image;
 import java.util.Iterator;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import obligatorio.*;
 
 public class VentanaSorteo extends javax.swing.JPanel {
@@ -14,7 +15,11 @@ public class VentanaSorteo extends javax.swing.JPanel {
         ImageIcon iconoError = new ImageIcon(getClass().getResource("/Imagenes/error.png"));
         error = new ImageIcon(iconoError.getImage().getScaledInstance(22, -1, Image.SCALE_DEFAULT));
         cargarIconos();
-
+        cargarRestaurantes();
+        ImageIcon iconoConfir = new ImageIcon(getClass().getResource("/Imagenes/confirmar.png"));
+        ImageIcon confirmar = new ImageIcon(iconoConfir.getImage().getScaledInstance(50, -1, Image.SCALE_DEFAULT));
+        btnSorteo.setIcon(confirmar);
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -38,6 +43,7 @@ public class VentanaSorteo extends javax.swing.JPanel {
         lblCantGanadError = new javax.swing.JLabel();
         lblRestError = new javax.swing.JLabel();
         lblPremioError = new javax.swing.JLabel();
+        lblRespuesta = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -62,7 +68,7 @@ public class VentanaSorteo extends javax.swing.JPanel {
         add(lblFechaCie, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
 
         try {
-            txtFechaCi.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            txtFechaCi.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##-##-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -72,7 +78,7 @@ public class VentanaSorteo extends javax.swing.JPanel {
         add(lblFechaIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
 
         try {
-            txtFechaIn.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            txtFechaIn.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##-##-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -85,20 +91,25 @@ public class VentanaSorteo extends javax.swing.JPanel {
 
         lblPremio.setText("Premio (*)");
         add(lblPremio, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, -1, -1));
-        add(txtPremio, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, 280, 50));
+        add(txtPremio, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, 280, 20));
 
-        btnSorteo.setText("Definir Sorteo");
+        btnSorteo.setBorderPainted(false);
+        btnSorteo.setContentAreaFilled(false);
+        btnSorteo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSorteo.setFocusable(false);
+        btnSorteo.setRolloverEnabled(false);
         btnSorteo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSorteoActionPerformed(evt);
             }
         });
-        add(btnSorteo, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 270, -1, -1));
+        add(btnSorteo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 240, 58, 78));
         add(lblHCierreError, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 180, 22, 20));
         add(lblFInicioError, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 150, 22, 20));
         add(lblCantGanadError, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, 22, 20));
         add(lblRestError, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, 22, 20));
         add(lblPremioError, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 210, 22, 20));
+        add(lblRespuesta, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 200, 20));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSorteoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSorteoActionPerformed
@@ -119,28 +130,28 @@ public class VentanaSorteo extends javax.swing.JPanel {
         if (miSistema.validarStringNoVacio(txtPremio.getText(), 0, 200)) {
             premioOk = true;
             lblPremioError.setVisible(false);
-        }else{
+        } else {
             premioOk = false;
             lblPremioError.setVisible(true);
         }
         if (lstRestaurantes.getSelectedIndex() > -1) {
             restauranteOk = true;
             lblRestError.setVisible(false);
-        }else{
+        } else {
             restauranteOk = false;
             lblRestError.setVisible(true);
         }
         if (miSistema.validarFecha(txtFechaIn.getText())) {
             fInicioOk = true;
             lblFInicioError.setVisible(false);
-        }else{
-            fInicioOk=false;
+        } else {
+            fInicioOk = false;
             lblFInicioError.setVisible(true);
         }
         if (miSistema.validarFecha(txtFechaCi.getText())) {
             fCierreOk = true;
             lblHCierreError.setVisible(false);
-        }else{
+        } else {
             fCierreOk = false;
             lblHCierreError.setVisible(true);
         }
@@ -151,7 +162,7 @@ public class VentanaSorteo extends javax.swing.JPanel {
             if (miSistema.validarNumero(cantGanadores, 0, 10000)) {
                 cantGanadoresOk = true;
                 lblCantGanadError.setVisible(false);
-            }else{
+            } else {
                 cantGanadoresOk = false;
                 lblCantGanadError.setVisible(true);
             }
@@ -159,12 +170,19 @@ public class VentanaSorteo extends javax.swing.JPanel {
             cantGanadoresOk = false;
             lblCantGanadError.setVisible(true);
         }
-        
-        if(miSistema.comparaFechas(txtFechaIn.getText(),txtFechaCi.getText())){
-            
+        if (miSistema.comparaFechas(txtFechaIn.getText(), txtFechaCi.getText())) {
+            fechasOk = true;
+            lblRespuesta.setText("");
+            lblFInicioError.setVisible(false);
+            lblHCierreError.setVisible(false);
+        } else {
+            fechasOk = false;
+            lblRespuesta.setText("Las fechas son invalidas.");
+            lblFInicioError.setVisible(true);
+            lblHCierreError.setVisible(true);
         }
-        
-        if (restauranteOk && fInicioOk && fCierreOk && premioOk && cantGanadoresOk ) {
+
+        if (restauranteOk && fInicioOk && fCierreOk && premioOk && cantGanadoresOk && fechasOk) {
             sor.setRestaurante(miSistema.getLstRestaurantes().get(lstRestaurantes.getSelectedIndex()));
             sor.setPremio(txtPremio.getText());
             sor.setFechaInicio(txtFechaIn.getText());
@@ -175,6 +193,7 @@ public class VentanaSorteo extends javax.swing.JPanel {
             txtFechaCi.setText("");
             txtPremio.setText("");
             txtCantGanadores.setText("");
+            lblRespuesta.setText("Sorteo definido con exito");
 
         }
 
@@ -201,6 +220,7 @@ public class VentanaSorteo extends javax.swing.JPanel {
     private javax.swing.JLabel lblHCierreError;
     private javax.swing.JLabel lblPremio;
     private javax.swing.JLabel lblPremioError;
+    private javax.swing.JLabel lblRespuesta;
     private javax.swing.JLabel lblRestError;
     private javax.swing.JLabel lblRestaurante;
     private javax.swing.JList lstRestaurantes;

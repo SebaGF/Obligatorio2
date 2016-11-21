@@ -54,35 +54,35 @@ public class Sistema {
 
         return esta;
     }
-    
-    public boolean validarFecha(String fecha){
+
+    public boolean validarFecha(String fecha) {
         boolean ok = false;
-        try{
-            SimpleDateFormat formatoFecha = new SimpleDateFormat ("dd/MM/yyyy", Locale.getDefault());
+        try {
+            SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
             formatoFecha.setLenient(false);
             formatoFecha.parse(fecha);
-            
-        }catch(ParseException e){
+
+        } catch (ParseException e) {
             return false;
         }
         return true;
-      
+
     }
-    
-    public boolean validarNumero(int num, int min, int max){
+
+    public boolean validarNumero(int num, int min, int max) {
         boolean ok;
         ok = false;
-        try{
-            if(num>min && num <max ){
-                ok=true;
+        try {
+            if (num > min && num < max) {
+                ok = true;
             }
-        }catch(NumberFormatException e){
-            
+        } catch (NumberFormatException e) {
+
         }
         return ok;
     }
-    
-     public boolean comparaFechas(String fecha, String fecha2){
+
+    public boolean comparaFechas(String fecha, String fecha2) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         boolean ok;
         ok = false;
@@ -92,25 +92,25 @@ public class Sistema {
         } catch (ParseException ex) {
             ok = false;
         }
-               
-        
+
         Date s = null;
-           
+
         try {
             s = sdf.parse(fecha2);
         } catch (ParseException ex) {
             ok = false;
         }
-        
-        
-           if(s.compareTo(f)>0){
-              ok = true ;
-           }
-           if(s.compareTo(f)<0){
-               ok = false;
-           }
-           
-           return ok;
+
+        if (f != null || s != null) {
+            if (s.compareTo(f) > 0) {
+                ok = true;
+            }
+            if (s.compareTo(f) < 0) {
+                ok = false;
+            }
+        }
+
+        return ok;
     }
 
     public boolean estaEvaluacionSorteo(String mail, String dir) {
