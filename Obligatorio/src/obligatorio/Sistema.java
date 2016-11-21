@@ -7,7 +7,6 @@ public class Sistema {
     private ArrayList<Restaurante> lstRestaurantes;
     private ArrayList<Evaluacion> lstEvaluacion;
     private ArrayList<Evaluacion> lstEvaluacionSorteo;
-    
 
     public Sistema() {
         this.lstRestaurantes = new ArrayList();
@@ -26,8 +25,7 @@ public class Sistema {
     public ArrayList<Evaluacion> getLstEvaluacionSorteo() {
         return lstEvaluacionSorteo;
     }
-    
-    
+
     public boolean validarStringNoVacio(String dato, int min, int max) {
         boolean ok;
         ok = false;
@@ -40,19 +38,33 @@ public class Sistema {
         }
         return ok;
     }
-    
-    public boolean estaRestaurante(String dir){
+
+    public boolean estaRestaurante(String dir) {
         boolean esta;
         esta = false;
-        for (int i = 0; i <lstRestaurantes.size(); i++) {
-            if(lstRestaurantes.get(i).getDireccion().equals(dir)){
+        for (int i = 0; i < lstRestaurantes.size(); i++) {
+            if (lstRestaurantes.get(i).getDireccion().equals(dir)) {
                 esta = true;
             }
         }
-        
+
         return esta;
     }
 
-   
+    public boolean estaEvaluacionSorteo(String mail, String dir) {
+        boolean esta;
+        esta = false;
+        for (int i = 0; i < this.getLstEvaluacionSorteo().size(); i++) {
+            Evaluacion aux;
+            aux = this.getLstEvaluacionSorteo().get(i);
+            if (aux.getMail().equalsIgnoreCase(mail)) {
+                if (aux.getUnRestaurante().getDireccion().equalsIgnoreCase(dir)) {
+
+                    esta = true;
+                }
+            }
+        }
+        return esta;
+    }
 
 }

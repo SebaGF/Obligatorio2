@@ -56,59 +56,5 @@ public class SistemaTest {
         boolean result = s.validarStringNoVacio("texto", 1, 10);
         assertEquals(true, result);
     }
-    @Test
-    public void validarHorarioNulo(){
-        Sistema s = new Sistema();
-        boolean result = s.validarHorario(null);
-        assertEquals(false, result);
-    }
-    @Test
-    public void validarHorarioSinPuntos(){
-        Sistema s = new Sistema();
-        boolean result = s.validarHorario("2100");
-        assertEquals(false, result);
-    }
-    @Test
-    public void validarHorarioSinHoras(){
-        Sistema s = new Sistema();
-        boolean result = s.validarHorario(":30");
-        assertEquals(false, result);
-    }
-    @Test
-    public void validarHorarioSinMinutos(){
-        Sistema s = new Sistema();
-        boolean result = s.validarHorario("21:");
-        assertEquals(false, result);
-    }
-    @Test
-    public void validarHorarioConHoraMayorA23(){
-        Sistema s = new Sistema();
-        boolean result = s.validarHorario("28:00");
-        assertEquals(false, result);
-    }
-    @Test
-    public void validarHorarioConHoraNegativa(){
-        Sistema s = new Sistema();
-        boolean result = s.validarHorario("-21:00");
-        assertEquals(false, result);
-    }
-    @Test
-    public void validarHorarioConMinutosMayorA59(){
-        Sistema s = new Sistema();
-        boolean result = s.validarHorario("21:65");
-        assertEquals(false, result);
-    }
-    @Test
-    public void validarHorarioConMinutosNegativos(){
-        Sistema s = new Sistema();
-        boolean result = s.validarHorario("21:-15");
-        assertEquals(false, result);
-    }
-    @Test
-    public void validarHorarioCorrecto(){
-        Sistema s = new Sistema();
-        boolean result = s.validarHorario("20:30");
-        assertEquals(true, result);
-    }
     
 }
