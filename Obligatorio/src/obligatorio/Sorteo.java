@@ -73,7 +73,7 @@ public class Sorteo {
     
     @Override
     public String toString(){
-        return this.restaurante.getNombre() + " Premio:" + this.premio;  
+        return this.restaurante.getNombre() + " Premio: " + this.premio;  
     }
     
    
