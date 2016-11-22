@@ -188,6 +188,7 @@ public class VentanaSorteo extends javax.swing.JPanel {
             sor.setFechaInicio(txtFechaIn.getText());
             sor.setFechaCierre(txtFechaCi.getText());
             sor.setCantGanadores(Integer.parseInt(txtCantGanadores.getText()));
+            miSistema.getLstSorteos().add(sor);
             lstRestaurantes.setSelectedIndex(0);
             txtFechaIn.setText("");
             txtFechaCi.setText("");
