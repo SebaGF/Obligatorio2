@@ -53,7 +53,7 @@ public class Sistema {
         boolean esta;
         esta = false;
         for (int i = 0; i < lstRestaurantes.size(); i++) {
-            if (lstRestaurantes.get(i).getDireccion().equals(dir)) {
+            if (lstRestaurantes.get(i).getDireccion().equalsIgnoreCase(dir)) {
                 esta = true;
             }
         }

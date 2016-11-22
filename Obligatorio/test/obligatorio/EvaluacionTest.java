@@ -68,35 +68,35 @@ public class EvaluacionTest {
 
     @Test
     public void testSetCatnidadEstrellasMaxNumRepresentable() {
-        Evaluacion instance = new Evaluacion();
+        Evaluacion instance = new Evaluacion(0, null, null);
         instance.setCatnidadEstrellas(Integer.MAX_VALUE);
         assertEquals(Integer.MAX_VALUE, instance.getCatnidadEstrellas());
     }
 
     @Test
     public void testSetCatnidadEstrellasMinNumRepresentable() {
-        Evaluacion instance = new Evaluacion();
+        Evaluacion instance = new Evaluacion(0, null, null);
         instance.setCatnidadEstrellas(Integer.MIN_VALUE);
         assertEquals(Integer.MIN_VALUE, instance.getCatnidadEstrellas());
     }
 
     @Test
     public void testSetCatnidadEstrellasConNumPositivo() {
-        Evaluacion instance = new Evaluacion();
+        Evaluacion instance = new Evaluacion(0, null, null);
         instance.setCatnidadEstrellas(20);
         assertEquals(20, instance.getCatnidadEstrellas());
     }
 
     @Test
     public void testSetCatnidadEstrellasConNumNegativo() {
-        Evaluacion instance = new Evaluacion();
+        Evaluacion instance = new Evaluacion(0, null, null);
         instance.setCatnidadEstrellas(-15);
         assertEquals(-15, instance.getCatnidadEstrellas());
     }
 
     @Test
     public void testSetCatnidadEstrellasConCero() {
-        Evaluacion instance = new Evaluacion();
+        Evaluacion instance = new Evaluacion(0, null, null);
         instance.setCatnidadEstrellas(0);
         assertEquals(0, instance.getCatnidadEstrellas());
     }
@@ -158,22 +158,19 @@ public class EvaluacionTest {
     //<editor-fold defaultstate="collapsed" desc="Test getNombre">
     @Test
     public void testGetNombreNull() {
-        Evaluacion instance = new Evaluacion();
-        instance.setNombre(null);
+        Evaluacion instance = new Evaluacion(4, "Muy bueno", null,"pedro15@gmail.com",null);
         assertEquals(null, instance.getNombre());
     }
 
     @Test
     public void testGetNombreVacio() {
-        Evaluacion instance = new Evaluacion();
-        instance.setNombre("");
+        Evaluacion instance = new Evaluacion(4, "Muy bueno", "","pedro15@gmail.com",null);
         assertEquals("", instance.getNombre());
     }
 
     @Test
     public void testGetNombreFormatoCorrecto() {
-        Evaluacion instance = new Evaluacion();
-        instance.setNombre("Juan Osorio");
+        Evaluacion instance = new Evaluacion(4, "Muy bueno", "Juan Osorio","JOsorio@gmail.com",null);
         assertEquals("Juan Osorio", instance.getNombre());
     }
 
@@ -372,19 +369,13 @@ public class EvaluacionTest {
         assertEquals(true, instance.validarCantidadEstrellas(4));
     }
 //</editor-fold>
-
-//
-//    /**
-//     * Test of toString method, of class Evaluacion.
-//     */
-//    @Test
-//    public void testToString() {
-//        System.out.println("toString");
-//        Evaluacion instance = new Evaluacion();
-//        String expResult = "";
-//        String result = instance.toString();
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
+    //<editor-fold defaultstate="collapsed" desc="Test toString">
+    
+    @Test
+    public void testToStringNoVacio() {
+        Evaluacion instance = new Evaluacion();
+        assertNotEquals("", instance.toString());
+    }
+   
+//</editor-fold>
 }
