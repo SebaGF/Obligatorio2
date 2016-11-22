@@ -101,7 +101,7 @@ public class Sistema {
             ok = false;
         }
 
-        if (f != null || s != null) {
+        if (f != null && s != null) {
             if (s.compareTo(f) > 0) {
                 ok = true;
             }
