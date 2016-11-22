@@ -18,7 +18,7 @@ public class Evaluacion {
         this.nombre = "Sin-Nombre";
         this.mail = "Sin-Mail";
         this.unRestaurante = null;
-        this.fecha = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
+        this.fecha = new SimpleDateFormat("dd-MM-yyyy").format(Calendar.getInstance().getTime());
     }
 
     public Evaluacion(int catnidadEstrellas, String reseña, String nombre, String mail, Restaurante unRestaurante) {
@@ -27,7 +27,7 @@ public class Evaluacion {
         this.nombre = nombre;
         this.mail = mail;
         this.unRestaurante = unRestaurante;
-        this.fecha = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
+        this.fecha = new SimpleDateFormat("dd-MM-yyyy").format(Calendar.getInstance().getTime());
     }
 
     public Evaluacion(int cantidadEstrellas, String reseña, Restaurante unRestaurante) {
@@ -36,7 +36,7 @@ public class Evaluacion {
         this.mail = "Sin-Mail";
         this.nombre = "Anónima";
         this.unRestaurante = unRestaurante;
-        this.fecha = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
+        this.fecha = new SimpleDateFormat("dd-MM-yyyy").format(Calendar.getInstance().getTime());
     }
 
     public int getCatnidadEstrellas() {
