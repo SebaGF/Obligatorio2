@@ -21,11 +21,14 @@ public class Sistema {
     private ArrayList<Evaluacion> lstEvaluacion;
     private ArrayList<Evaluacion> lstEvaluacionSorteo;
     private Correo miCorreo;
+    private ArrayList<Sorteo> lstSorteos;
+
+
     public Sistema() {
         this.lstRestaurantes = new ArrayList();
         this.lstEvaluacion = new ArrayList();
-        lstEvaluacionSorteo = new ArrayList<>();
-        
+        lstEvaluacionSorteo = new ArrayList();
+        this.lstSorteos = new ArrayList();
     }
 
     public ArrayList<Restaurante> getLstRestaurantes() {
@@ -45,6 +48,11 @@ public class Sistema {
     public void setCorreo(Correo unCorreo){
         this.miCorreo = unCorreo;
     }
+    
+    public ArrayList<Sorteo> getLstSorteos() {
+        return lstSorteos;
+    }
+
     public boolean validarStringNoVacio(String dato, int min, int max) {
         boolean ok;
         ok = false;
@@ -98,6 +106,7 @@ public class Sistema {
     }
 
     public boolean comparaFechas(String fecha, String fecha2) {
+        //Retorna TRUE si la primera es mas chica que la segunda
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         boolean ok;
         ok = false;
