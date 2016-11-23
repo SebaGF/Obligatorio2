@@ -207,7 +207,7 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Nombre (5 - 21)"/>
+            <Property name="text" type="java.lang.String" value="Nombre (4 - 20)"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -252,7 +252,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Email (6 - 21)"/>
+            <Property name="text" type="java.lang.String" value="Email (6 - 20)"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -262,7 +262,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lbResenia">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Rese&#xf1;a (6 - 201)"/>
+            <Property name="text" type="java.lang.String" value="Rese&#xf1;a (6 - 200)"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">

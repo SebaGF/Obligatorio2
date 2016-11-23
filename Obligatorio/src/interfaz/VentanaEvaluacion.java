@@ -173,7 +173,7 @@ public class VentanaEvaluacion extends javax.swing.JPanel {
         jPDatosOpcionales.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         jPDatosOpcionales.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Nombre (5 - 21)");
+        jLabel1.setText("Nombre (4 - 20)");
         jPDatosOpcionales.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
 
         txtAReseña.setColumns(10);
@@ -185,10 +185,10 @@ public class VentanaEvaluacion extends javax.swing.JPanel {
         jPDatosOpcionales.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 100, 20));
         jPDatosOpcionales.add(txtMail, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 100, 20));
 
-        jLabel2.setText("Email (6 - 21)");
+        jLabel2.setText("Email (6 - 20)");
         jPDatosOpcionales.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
 
-        lbResenia.setText("Reseña (6 - 201)");
+        lbResenia.setText("Reseña (6 - 200)");
         jPDatosOpcionales.add(lbResenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
 
         cmbDominio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "@Hotmail.com", "@Gmail.com" }));
@@ -268,7 +268,7 @@ public class VentanaEvaluacion extends javax.swing.JPanel {
             lblErrorEstrella.setVisible(true);
         }
         if (datosOpcionales) {
-            if (miSistema.validarStringNoVacio(txtNombre.getText(), 4, 21)) {
+            if (miSistema.validarStringNoVacio(txtNombre.getText(), 2, 21)) {
                 lblErrorNombre.setVisible(false);
                 nombreOk = true;
             } else {

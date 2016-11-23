@@ -38,6 +38,26 @@ public class RealizarSorteo extends javax.swing.JPanel {
 
     }
 
+    public void enviarCorreo(Evaluacion evaluacion, Sorteo sorteo) {
+        Correo correo = new Correo();
+        miSistema.setCorreo(correo);
+        miSistema.getCorreo().setAsunto("Ganador sorteo del restaurante " + evaluacion.getUnRestaurante().getNombre());
+        String mensaje = "";
+        mensaje = mensaje + "Estimado " + evaluacion.getNombre() + ",\n";
+        mensaje = mensaje + "\nHas ganado en el sorteo del restaurante " + evaluacion.getUnRestaurante().getNombre();
+        mensaje = mensaje + "\nPremio: "+sorteo.getPremio().toUpperCase()+"\n";
+        mensaje = mensaje + "Este tiene una validez de 7 dias.\nTe esperamos en " + evaluacion.getUnRestaurante().getDireccion();
+        miSistema.getCorreo().setMensaje(mensaje);
+        miSistema.getCorreo().setContrasenia("kyiuskovhpqoxesn");
+        miSistema.getCorreo().setUsuarioCorreo("obligatorioOrt16@gmail.com");
+        miSistema.getCorreo().setDestino(evaluacion.getMail());
+        if (miSistema.enviarCorreo(correo)) {
+            System.out.println("Envio realizado");
+        } else {
+            System.out.println("Envio no realizado");
+        }
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -110,20 +130,25 @@ public class RealizarSorteo extends javax.swing.JPanel {
 
     private void btnSortearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSortearActionPerformed
         ArrayList<Evaluacion> aSortear = new ArrayList();
-        Sorteo s = new Sorteo();
-        s = miSistema.getLstSorteos().get(lstSorteos.getSelectedIndex());
-        listaParaSortear(aSortear, s);
-        
-        if (lstSorteos.getSelectedIndex() > -1 && aSortear.size()>=s.getCantGanadores()) {
-            Evaluacion[] ganadores = new Evaluacion[s.getCantGanadores()];
-            ganadores = obtenerGanadores(s.getCantGanadores(), s);
-            cargarGanadores(ganadores);
-            pnlGanadores.setVisible(true);
-            miSistema.getLstSorteos().remove(s);
-            lblError.setVisible(false);
-            cargarSorteos();
+        Sorteo sorteo = new Sorteo();
 
-        }else{
+        try {
+            sorteo = miSistema.getLstSorteos().get(lstSorteos.getSelectedIndex());
+            listaParaSortear(aSortear, sorteo);
+
+            if (lstSorteos.getSelectedIndex() > -1 && aSortear.size() >= sorteo.getCantGanadores()) {
+                Evaluacion[] ganadores = new Evaluacion[sorteo.getCantGanadores()];
+                ganadores = obtenerGanadores(sorteo.getCantGanadores(), sorteo);
+                cargarGanadores(ganadores, sorteo);
+                pnlGanadores.setVisible(true);
+                miSistema.getLstSorteos().remove(sorteo);
+                lblError.setVisible(false);
+                cargarSorteos();
+
+            } else {
+                lblError.setVisible(true);
+            }
+        } catch (Exception e) {
             lblError.setVisible(true);
         }
 
@@ -158,7 +183,7 @@ public void cargarSorteos() {
         Evaluacion[] ganadores = new Evaluacion[num];
         Random ran = new Random();
         int[] cant = new int[num];
-                    
+
         listaParaSortear(aSortear, s);
 
         for (int i = 0; i < cant.length; i++) {
@@ -184,10 +209,13 @@ public void cargarSorteos() {
         return ganadores;
     }
 
-    public void cargarGanadores(Evaluacion[] e) {
+    public void cargarGanadores(Evaluacion[] e, Sorteo s) {
         DefaultListModel modelo = new DefaultListModel();
         for (int i = 0; i < e.length; i++) {
             modelo.addElement(e[i]);
+            System.out.println(e[i].getUnRestaurante().getNombre());
+            System.out.println(e[i].getMail() + " , " + e[i].getNombre());
+            enviarCorreo(e[i], s);
         }
         lstGanadores.setModel(modelo);
     }
@@ -202,17 +230,18 @@ public void cargarSorteos() {
         }
         return ok;
     }
-    
-    public void listaParaSortear(ArrayList<Evaluacion> aSortear, Sorteo s){
-        
+
+    public void listaParaSortear(ArrayList<Evaluacion> aSortear, Sorteo s) {
+
         for (int i = 0; i < miSistema.getLstEvaluacionSorteo().size(); i++) {
             if (miSistema.comparaFechas(s.getFechaInicio(), miSistema.getLstEvaluacionSorteo().get(i).getFecha())
                     && miSistema.comparaFechas(miSistema.getLstEvaluacionSorteo().get(i).getFecha(), s.getFechaCierre())) {
                 aSortear.add(miSistema.getLstEvaluacionSorteo().get(i));
+
             }
         }
     }
-    
+
     Sistema miSistema;
 
 }
