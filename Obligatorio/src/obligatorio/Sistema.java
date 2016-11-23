@@ -23,7 +23,6 @@ public class Sistema {
     private Correo miCorreo;
     private ArrayList<Sorteo> lstSorteos;
 
-
     public Sistema() {
         this.lstRestaurantes = new ArrayList();
         this.lstEvaluacion = new ArrayList();
@@ -42,13 +41,15 @@ public class Sistema {
     public ArrayList<Evaluacion> getLstEvaluacionSorteo() {
         return lstEvaluacionSorteo;
     }
-    public Correo getCorreo(){
+
+    public Correo getCorreo() {
         return this.miCorreo;
     }
-    public void setCorreo(Correo unCorreo){
+
+    public void setCorreo(Correo unCorreo) {
         this.miCorreo = unCorreo;
     }
-    
+
     public ArrayList<Sorteo> getLstSorteos() {
         return lstSorteos;
     }
@@ -77,18 +78,18 @@ public class Sistema {
 
         return esta;
     }
-
+    
     public boolean validarFecha(String fecha) {
         boolean ok = false;
         try {
             SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
             formatoFecha.setLenient(false);
             formatoFecha.parse(fecha);
+            return true;
 
-        } catch (ParseException e) {
+        } catch (Exception e) {
             return false;
         }
-        return true;
 
     }
 
@@ -104,7 +105,7 @@ public class Sistema {
         }
         return ok;
     }
-
+    
     public boolean comparaFechas(String fecha, String fecha2) {
         //Retorna TRUE si la primera es mas chica que la segunda
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
@@ -153,19 +154,19 @@ public class Sistema {
         return esta;
     }
 
-    public boolean enviarCorreo(Correo correo){
-        try{
+    public boolean enviarCorreo(Correo correo) {
+        try {
             Properties p = new Properties();
             p.put("mail.smtp.host", "smtp.gmail.com");
             p.setProperty("mail.smtp.starttls.enable", "true");
             p.setProperty("mail.smtp.port", "587");
             p.setProperty("mail.smtp.user", correo.getUsuarioCorreo());
             p.setProperty("mail.smtp.auth", "true");
-            
+
             Session session = Session.getDefaultInstance(p, null);
             BodyPart texto = new MimeBodyPart();
             texto.setText(correo.getMensaje());
-            
+
             MimeMultipart m = new MimeMultipart();
             m.addBodyPart(texto);
             MimeMessage mensaje = new MimeMessage(session);
@@ -173,16 +174,15 @@ public class Sistema {
             mensaje.addRecipient(Message.RecipientType.TO, new InternetAddress(correo.getDestino()));
             mensaje.setSubject(correo.getAsunto());
             mensaje.setContent(m);
-            
+
             Transport transport = session.getTransport("smtp");
-            transport.connect(correo.getUsuarioCorreo(),correo.getContrasenia());
+            transport.connect(correo.getUsuarioCorreo(), correo.getContrasenia());
             transport.sendMessage(mensaje, mensaje.getAllRecipients());
             transport.close();
             return true;
-        }catch(Exception e){
-              return false;
+        } catch (Exception e) {
+            return false;
         }
-      
-        
+
     }
 }
