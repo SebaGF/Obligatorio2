@@ -1,5 +1,6 @@
 package interfaz;
 
+import java.awt.Color;
 import java.awt.Image;
 import java.util.Iterator;
 import javax.swing.DefaultListModel;
@@ -44,6 +45,7 @@ public class VentanaSorteo extends javax.swing.JPanel {
         lblRestError = new javax.swing.JLabel();
         lblPremioError = new javax.swing.JLabel();
         lblRespuesta = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -54,7 +56,7 @@ public class VentanaSorteo extends javax.swing.JPanel {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 240, 90));
 
-        lblCantGanadores.setText("Cantidad de ganadores (*)");
+        lblCantGanadores.setText("Cantidad de ganadores (1 - 100) (*)");
         add(lblCantGanadores, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
 
         txtCantGanadores.addActionListener(new java.awt.event.ActionListener() {
@@ -62,20 +64,20 @@ public class VentanaSorteo extends javax.swing.JPanel {
                 txtCantGanadoresActionPerformed(evt);
             }
         });
-        add(txtCantGanadores, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 30, -1));
+        add(txtCantGanadores, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, 30, -1));
 
         lblFechaCie.setText("Fecha cierre sorteo (*)");
-        add(lblFechaCie, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
+        add(lblFechaCie, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, -1, -1));
 
         try {
             txtFechaCi.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##-##-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        add(txtFechaCi, new org.netbeans.lib.awtextra.AbsoluteConstraints(138, 180, 80, -1));
+        add(txtFechaCi, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, 80, -1));
 
         lblFechaIn.setText("Fecha inicio sorteo (*)");
-        add(lblFechaIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
+        add(lblFechaIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, -1));
 
         try {
             txtFechaIn.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##-##-####")));
@@ -87,11 +89,11 @@ public class VentanaSorteo extends javax.swing.JPanel {
                 txtFechaInActionPerformed(evt);
             }
         });
-        add(txtFechaIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(138, 150, 80, -1));
+        add(txtFechaIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, 80, -1));
 
-        lblPremio.setText("Premio (*)");
-        add(lblPremio, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, -1, -1));
-        add(txtPremio, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, 280, 20));
+        lblPremio.setText("Premio (4 - 50) (*)");
+        add(lblPremio, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, -1, -1));
+        add(txtPremio, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 230, 20));
 
         btnSorteo.setBorderPainted(false);
         btnSorteo.setContentAreaFilled(false);
@@ -103,13 +105,19 @@ public class VentanaSorteo extends javax.swing.JPanel {
                 btnSorteoActionPerformed(evt);
             }
         });
-        add(btnSorteo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 240, 58, 78));
-        add(lblHCierreError, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 180, 22, 20));
-        add(lblFInicioError, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 150, 22, 20));
-        add(lblCantGanadError, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, 22, 20));
+        add(btnSorteo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, 58, 78));
+        add(lblHCierreError, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, 22, 20));
+        add(lblFInicioError, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, 22, 20));
+        add(lblCantGanadError, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, 22, 20));
         add(lblRestError, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, 22, 20));
-        add(lblPremioError, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 210, 22, 20));
-        add(lblRespuesta, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 200, 20));
+        add(lblPremioError, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 230, 22, 20));
+
+        lblRespuesta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        add(lblRespuesta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 400, 20));
+
+        jLabel1.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel1.setText("Formato fecha: DD/MM/AAAA");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSorteoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSorteoActionPerformed
@@ -127,7 +135,7 @@ public class VentanaSorteo extends javax.swing.JPanel {
         cantGanadoresOk = false;
         fechasOk = false;
 
-        if (miSistema.validarStringNoVacio(txtPremio.getText(), 0, 200)) {
+        if (miSistema.validarStringNoVacio(txtPremio.getText(), 3, 51)) {
             premioOk = true;
             lblPremioError.setVisible(false);
         } else {
@@ -159,7 +167,7 @@ public class VentanaSorteo extends javax.swing.JPanel {
 
             int cantGanadores;
             cantGanadores = Integer.parseInt(txtCantGanadores.getText());
-            if (miSistema.validarNumero(cantGanadores, 0, 10000)) {
+            if (miSistema.validarNumero(cantGanadores, 0, 101)) {
                 cantGanadoresOk = true;
                 lblCantGanadError.setVisible(false);
             } else {
@@ -172,12 +180,10 @@ public class VentanaSorteo extends javax.swing.JPanel {
         }
         if (miSistema.comparaFechas(txtFechaIn.getText(), txtFechaCi.getText())) {
             fechasOk = true;
-            lblRespuesta.setText("");
             lblFInicioError.setVisible(false);
             lblHCierreError.setVisible(false);
         } else {
             fechasOk = false;
-            lblRespuesta.setText("Las fechas son invalidas.");
             lblFInicioError.setVisible(true);
             lblHCierreError.setVisible(true);
         }
@@ -195,6 +201,7 @@ public class VentanaSorteo extends javax.swing.JPanel {
             txtPremio.setText("");
             txtCantGanadores.setText("");
             lblRespuesta.setText("Sorteo definido con exito");
+            lblRespuesta.setForeground(Color.green);
 
         }
 
@@ -212,6 +219,7 @@ public class VentanaSorteo extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSorteo;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCantGanadError;
     private javax.swing.JLabel lblCantGanadores;
