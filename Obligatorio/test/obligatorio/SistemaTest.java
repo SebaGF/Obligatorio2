@@ -217,4 +217,110 @@ public class SistemaTest {
         assertNotEquals(0, instance.getLstEvaluacion().size());
     }
 //</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="Test validarFecha">
+     @Test
+    public void testFechaCorrecta() {
+        Sistema s = new Sistema();
+        boolean result = s.validarFecha("17-02-1996");
+        assertEquals(true, result);
+    }
+    @Test
+    public void testFechaDiaIncorrecto() {
+        Sistema s = new Sistema();
+        boolean result = s.validarFecha("34-05-1996");
+        assertEquals(false, result);
+    }
+    @Test
+    public void testFechaCorrectaMesIncorrecto() {
+        Sistema s = new Sistema();
+        boolean result = s.validarFecha("15-18-2005");
+        assertEquals(false, result);
+    }
+    @Test
+    public void testFechaCorrecta30Febrero() {
+        Sistema s = new Sistema();
+        boolean result = s.validarFecha("30-02-2004");
+        assertEquals(false, result);
+    }
+    @Test
+    public void testFechaCorrectaVacio() {
+        Sistema s = new Sistema();
+        boolean result = s.validarFecha("");
+        assertEquals(false, result);
+    }
+    @Test
+    public void testFechaCorrectaNulo() {
+        Sistema s = new Sistema();
+        boolean result = s.validarFecha(null);
+        assertEquals(false,result);
+    }
+    @Test
+    public void testFechaCorrecta29FebreroBisiesto() {
+        Sistema s = new Sistema();
+        boolean result = s.validarFecha("29-02-2016");
+        assertEquals(true, result);
+    }
+    @Test
+    public void testFechaCorrecta29FebreroNoBisiesto() {
+        Sistema s = new Sistema();
+        boolean result = s.validarFecha("29-02-2017");
+        assertEquals(false, result);
+    }
+    
+    
+//</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="Test comparaFechas">
+    @Test
+    public void testComparaFechasPrimeraDiaMasChica() {
+        Sistema s = new Sistema();
+        boolean result = s.comparaFechas("17-02-201","25-02-2012");
+        assertEquals(true, result);
+    }
+    @Test
+    public void testComparaFechasPrimeraMesMasChico() {
+        Sistema s = new Sistema();
+        boolean result = s.comparaFechas("17-02-2012","25-05-2012");
+        assertEquals(true, result);
+    }
+    @Test
+    public void testComparaFechasPrimeraAnoMasChico() {
+        Sistema s = new Sistema();
+        boolean result = s.comparaFechas("17-02-2010","25-05-2012");
+        assertEquals(true, result);
+    }
+    @Test
+    public void testComparaFechasPrimeraDiaMasGrande() {
+        Sistema s = new Sistema();
+        boolean result = s.comparaFechas("29-02-2012","25-02-2012");
+        assertEquals(false, result);
+    }
+    @Test
+    public void testComparaFechasPrimeraMesMasGrande() {
+        Sistema s = new Sistema();
+        boolean result = s.comparaFechas("17-12-2012","25-05-2012");
+        assertEquals(false, result);
+    }
+    @Test
+    public void testComparaFechasPrimeraAnoMasGrande() {
+        Sistema s = new Sistema();
+        boolean result = s.comparaFechas("17-02-2014","25-05-2012");
+        assertEquals(false, result);
+    }
+    @Test
+    public void testComparaFechasIguales() {
+        Sistema s = new Sistema();
+        boolean result = s.comparaFechas("17-02-2012","17-02-2012");
+        assertEquals(false, result);
+    }
+    @Test
+    public void testComparaFechasVacias() {
+        Sistema s = new Sistema();
+        boolean result = s.comparaFechas("","");
+        assertEquals(false, result);
+    }
+   
+    
+    
+//</editor-fold>
+   
 }
