@@ -158,19 +158,19 @@ public class EvaluacionTest {
     //<editor-fold defaultstate="collapsed" desc="Test getNombre">
     @Test
     public void testGetNombreNull() {
-        Evaluacion instance = new Evaluacion(4, "Muy bueno", null,"pedro15@gmail.com",null);
+        Evaluacion instance = new Evaluacion(4, "Muy bueno", null,"pedro15@gmail.com",null,"15-05-2016");
         assertEquals(null, instance.getNombre());
     }
 
     @Test
     public void testGetNombreVacio() {
-        Evaluacion instance = new Evaluacion(4, "Muy bueno", "","pedro15@gmail.com",null);
+        Evaluacion instance = new Evaluacion(4, "Muy bueno", "","pedro15@gmail.com",null,"15-05-2016");
         assertEquals("", instance.getNombre());
     }
 
     @Test
     public void testGetNombreFormatoCorrecto() {
-        Evaluacion instance = new Evaluacion(4, "Muy bueno", "Juan Osorio","JOsorio@gmail.com",null);
+        Evaluacion instance = new Evaluacion(4, "Muy bueno", "Juan Osorio","JOsorio@gmail.com",null,"15-05-2016");
         assertEquals("Juan Osorio", instance.getNombre());
     }
 
@@ -374,7 +374,7 @@ public class EvaluacionTest {
     @Test
     public void testToStringNoVacio() {
         Evaluacion instance = new Evaluacion();
-        assertNotEquals("", instance.toString());
+        assertNotNull(instance.toString());
     }
    
 //</editor-fold>

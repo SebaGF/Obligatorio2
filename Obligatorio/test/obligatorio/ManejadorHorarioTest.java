@@ -31,8 +31,99 @@ public class ManejadorHorarioTest {
     }
 
     //<editor-fold defaultstate="collapsed" desc="Test SetDias">
-    
+    @Test
+    public void testSetDiasOk(){
+        ManejadorHorario instance = new ManejadorHorario();
+        String [] dias ={"Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sabado", "Domingo"};
+        instance.setDias(dias);
+        assertSame(dias, instance.getDias());
+    }
 
+//</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="Test setHorarios">
+    @Test
+    public void testSetHorariosOk() {
+        List<Map.Entry<String, String>> horarios;
+        ManejadorHorario instance = new ManejadorHorario();
+        instance.setHorarios(instance.getHorarios());
+        horarios = instance.getHorarios();
+        assertSame(horarios, instance.getHorarios());
+    }
+
+//</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="Test cargarHorarios">
+    @Test
+    public void testCargarHorario() {
+        String dia = "Lunes";
+        String horaInicio = "15:00";
+        String horaFin = "22:30";
+        ManejadorHorario instance = new ManejadorHorario();
+        instance.cargarHorario(dia, horaInicio, horaFin);
+        assertEquals(instance.getHorarios().get(0).getValue(), horaInicio+" - "+horaFin);
+    }
+//
+//</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="Test validarHorario">
+     @Test
+    public void testValidarHorarioOk() {
+        ManejadorHorario instance = new ManejadorHorario(); 
+        assertEquals(true, instance.validarHorario("15:00"));
+    }
+     @Test
+    public void testValidarHorarioFormatoMal() {
+        ManejadorHorario instance = new ManejadorHorario(); 
+        assertEquals(false, instance.validarHorario("ts:Pl"));
+    }
+     @Test
+    public void testValidarHorarioSoloConDosPuntos() {
+        ManejadorHorario instance = new ManejadorHorario(); 
+        assertEquals(false, instance.validarHorario(":"));
+    }
+     @Test
+    public void testValidarHorarioSinDosPuntos() {
+        ManejadorHorario instance = new ManejadorHorario(); 
+        assertEquals(false, instance.validarHorario("1500"));
+    }
+     @Test
+    public void testValidarHorarioSinHoras() {
+        ManejadorHorario instance = new ManejadorHorario(); 
+        assertEquals(false, instance.validarHorario(":00"));
+    }
+     @Test
+    public void testValidarHorarioSinMinutos() {
+        ManejadorHorario instance = new ManejadorHorario(); 
+        assertEquals(false, instance.validarHorario("15:"));
+    }
+     @Test
+    public void testValidarHorarioVacia() {
+        ManejadorHorario instance = new ManejadorHorario(); 
+        assertEquals(false, instance.validarHorario(""));
+    }
+     @Test
+    public void testValidarHorarioNull() {
+        ManejadorHorario instance = new ManejadorHorario(); 
+        assertEquals(false, instance.validarHorario(null));
+    }
+     @Test
+    public void testValidarHorarioHoraNegativa() {
+        ManejadorHorario instance = new ManejadorHorario(); 
+        assertEquals(false, instance.validarHorario("-2:00"));
+    }
+     @Test
+    public void testValidarHorarioMinutoNegativo() {
+        ManejadorHorario instance = new ManejadorHorario(); 
+        assertEquals(false, instance.validarHorario("15:-5"));
+    }
+     @Test
+    public void testValidarHorarioMinutoMayorA59() {
+        ManejadorHorario instance = new ManejadorHorario(); 
+        assertEquals(false, instance.validarHorario("15:65"));
+    }
+     @Test
+    public void testValidarHorarioHoraMayorA23() {
+        ManejadorHorario instance = new ManejadorHorario(); 
+        assertEquals(false, instance.validarHorario("30:00"));
+    }
 //</editor-fold>
 //    @Test
 //    public void testGetDias() {
@@ -66,43 +157,13 @@ public class ManejadorHorarioTest {
 //    /**
 //     * Test of setHorarios method, of class ManejadorHorario.
 //     */
-//    @Test
-//    public void testSetHorarios() {
-//        System.out.println("setHorarios");
-//        List<Map.Entry<String, String>> horarios = null;
-//        ManejadorHorario instance = new ManejadorHorario();
-//        instance.setHorarios(horarios);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
+//    
 //    /**
 //     * Test of cargarHorario method, of class ManejadorHorario.
 //     */
-//    @Test
-//    public void testCargarHorario() {
-//        System.out.println("cargarHorario");
-//        String dia = "";
-//        String horaInicio = "";
-//        String horaFin = "";
-//        ManejadorHorario instance = new ManejadorHorario();
-//        instance.cargarHorario(dia, horaInicio, horaFin);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
+//    
 //    /**
 //     * Test of validarHorario method, of class ManejadorHorario.
 //     */
-//    @Test
-//    public void testValidarHorario() {
-//        System.out.println("validarHorario");
-//        String horario = "";
-//        ManejadorHorario instance = new ManejadorHorario();
-//        boolean expResult = false;
-//        boolean result = instance.validarHorario(horario);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
+//   
 }
