@@ -107,7 +107,7 @@ public class Sistema {
     }
     
     public boolean comparaFechas(String fecha, String fecha2) {
-        //Retorna TRUE si la primera es mas chica que la segunda
+        //Retorna TRUE si la primera es mas chica o igual que la segunda
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         boolean ok;
         ok = false;
@@ -132,6 +132,9 @@ public class Sistema {
             }
             if (s.compareTo(f) < 0) {
                 ok = false;
+            }
+            if(s.compareTo(f)==0){
+                ok=true;
             }
         }
 

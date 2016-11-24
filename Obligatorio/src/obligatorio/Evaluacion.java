@@ -21,13 +21,13 @@ public class Evaluacion {
         this.fecha = new SimpleDateFormat("dd-MM-yyyy").format(Calendar.getInstance().getTime());
     }
 
-    public Evaluacion(int catnidadEstrellas, String reseña, String nombre, String mail, Restaurante unRestaurante) {
+    public Evaluacion(int catnidadEstrellas, String reseña, String nombre, String mail, Restaurante unRestaurante, String unaFecha) {
         this.catnidadEstrellas = catnidadEstrellas;
         this.resenia = reseña;
         this.nombre = nombre;
         this.mail = mail;
         this.unRestaurante = unRestaurante;
-        this.fecha = new SimpleDateFormat("dd-MM-yyyy").format(Calendar.getInstance().getTime());
+        this.fecha = unaFecha;
     }
 
     public Evaluacion(int cantidadEstrellas, String reseña, Restaurante unRestaurante) {

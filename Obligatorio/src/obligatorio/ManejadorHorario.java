@@ -37,14 +37,6 @@ public class ManejadorHorario {
 
     }
 
-//    public void cargarHorario(String dia, String horaInicio, String horaFin) {
-//        Map.Entry<String, String> aux = obtenerHorario(dia);
-//        String texto= horaInicio+" - "+ horaFin ;
-//        aux.setValue(texto);
-//        
-//
-//    }
-
     public void cargarHorario(String dia, String horaInicio, String horaFin) {
        
         for (int i = 0; i < horarios.size(); i++) {

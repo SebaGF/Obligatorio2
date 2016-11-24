@@ -6,7 +6,9 @@
 package interfaz;
 
 import java.awt.Image;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.Random;
 import javax.swing.DefaultListModel;
@@ -35,6 +37,7 @@ public class RealizarSorteo extends javax.swing.JPanel {
         lblError.setVisible(false);
         cargarSorteos();
         pnlGanadores.setVisible(false);
+        lblErrorSinEv.setVisible(false);
 
     }
 
@@ -45,7 +48,7 @@ public class RealizarSorteo extends javax.swing.JPanel {
         String mensaje = "";
         mensaje = mensaje + "Estimado " + evaluacion.getNombre() + ",\n";
         mensaje = mensaje + "\nHas ganado en el sorteo del restaurante " + evaluacion.getUnRestaurante().getNombre();
-        mensaje = mensaje + "\nPremio: "+sorteo.getPremio().toUpperCase()+"\n";
+        mensaje = mensaje + "\nPremio: " + sorteo.getPremio().toUpperCase() + "\n";
         mensaje = mensaje + "Este tiene una validez de 7 dias.\nTe esperamos en " + evaluacion.getUnRestaurante().getDireccion();
         miSistema.getCorreo().setMensaje(mensaje);
         miSistema.getCorreo().setContrasenia("kyiuskovhpqoxesn");
@@ -73,6 +76,8 @@ public class RealizarSorteo extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         lstGanadores = new javax.swing.JList();
         lblError = new javax.swing.JLabel();
+        txtTardar = new javax.swing.JLabel();
+        lblErrorSinEv = new javax.swing.JLabel();
 
         jLabel2.setText("jLabel2");
 
@@ -89,7 +94,7 @@ public class RealizarSorteo extends javax.swing.JPanel {
 
         btnSortear.setBorderPainted(false);
         btnSortear.setContentAreaFilled(false);
-        btnSortear.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSortear.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnSortear.setFocusable(false);
         btnSortear.setRolloverEnabled(false);
         btnSortear.addActionListener(new java.awt.event.ActionListener() {
@@ -97,7 +102,7 @@ public class RealizarSorteo extends javax.swing.JPanel {
                 btnSortearActionPerformed(evt);
             }
         });
-        add(btnSortear, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, 70, 70));
+        add(btnSortear, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, 70, 70));
 
         jLabel4.setText("Ganadores:");
 
@@ -121,17 +126,23 @@ public class RealizarSorteo extends javax.swing.JPanel {
                 .addGroup(pnlGanadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
-        add(pnlGanadores, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 330, 160));
+        add(pnlGanadores, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 330, 160));
         add(lblError, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 40, 40, 40));
+
+        txtTardar.setText("Esto puede tardar un momento...");
+        add(txtTardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 400, -1, -1));
+
+        lblErrorSinEv.setText("Este sorteo no tiene evaluaciones");
+        add(lblErrorSinEv, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSortearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSortearActionPerformed
         ArrayList<Evaluacion> aSortear = new ArrayList();
         Sorteo sorteo = new Sorteo();
-
+        lblErrorSinEv.setVisible(false);
         try {
             sorteo = miSistema.getLstSorteos().get(lstSorteos.getSelectedIndex());
             listaParaSortear(aSortear, sorteo);
@@ -147,6 +158,7 @@ public class RealizarSorteo extends javax.swing.JPanel {
 
             } else {
                 lblError.setVisible(true);
+                lblErrorSinEv.setVisible(true);
             }
         } catch (Exception e) {
             lblError.setVisible(true);
@@ -164,16 +176,22 @@ public class RealizarSorteo extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblError;
+    private javax.swing.JLabel lblErrorSinEv;
     private javax.swing.JList lstGanadores;
     private javax.swing.JList lstSorteos;
     private javax.swing.JPanel pnlGanadores;
+    private javax.swing.JLabel txtTardar;
     // End of variables declaration//GEN-END:variables
 public void cargarSorteos() {
         DefaultListModel modelo = new DefaultListModel();
         Iterator it = miSistema.getLstSorteos().iterator();
         while (it.hasNext()) {
+            Sorteo s = (Sorteo) it.next();
+            if (miSistema.comparaFechas(s.getFechaCierre(), new SimpleDateFormat("dd-MM-yyyy").format(Calendar.getInstance().getTime()))) {
 
-            modelo.addElement(it.next());
+                modelo.addElement(s);
+            }
+
         }
         lstSorteos.setModel(modelo);
     }
