@@ -6,14 +6,24 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import obligatorio.Sistema;
 
-public class VentanaPrincipal extends javax.swing.JFrame  {
+public class VentanaPrincipal extends javax.swing.JFrame {
 
     public VentanaPrincipal(Sistema s) {
         initComponents();
         miSistema = s;
         this.setMinimumSize(new Dimension(500, 500));
         this.setResizable(false);
+        cargarInicio();
+    }
 
+    public void cargarInicio() {
+        VentanaPanelPrincipal vp = new VentanaPanelPrincipal();
+        vp.setSize(this.jPMostrar.getWidth(), this.jPMostrar.getHeight());
+        vp.setLocation(1, 1);
+        jPMostrar.removeAll();
+        jPMostrar.add(vp, BorderLayout.CENTER);
+        jPMostrar.revalidate();
+        jPMostrar.repaint();
     }
 
     /**
@@ -28,7 +38,6 @@ public class VentanaPrincipal extends javax.swing.JFrame  {
         jPanel1 = new javax.swing.JPanel();
         btnFichaRestaurante = new javax.swing.JButton();
         jPMostrar = new javax.swing.JPanel();
-        jPInicio = new javax.swing.JPanel();
         btnCrearFicha = new javax.swing.JButton();
         btnEvaluacion = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
@@ -50,26 +59,15 @@ public class VentanaPrincipal extends javax.swing.JFrame  {
         jPMostrar.setMaximumSize(new java.awt.Dimension(500, 500));
         jPMostrar.setPreferredSize(new java.awt.Dimension(500, 500));
 
-        javax.swing.GroupLayout jPInicioLayout = new javax.swing.GroupLayout(jPInicio);
-        jPInicio.setLayout(jPInicioLayout);
-        jPInicioLayout.setHorizontalGroup(
-            jPInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
-        );
-        jPInicioLayout.setVerticalGroup(
-            jPInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout jPMostrarLayout = new javax.swing.GroupLayout(jPMostrar);
         jPMostrar.setLayout(jPMostrarLayout);
         jPMostrarLayout.setHorizontalGroup(
             jPMostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPInicio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 500, Short.MAX_VALUE)
         );
         jPMostrarLayout.setVerticalGroup(
             jPMostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 317, Short.MAX_VALUE)
         );
 
         btnCrearFicha.setText("Crear ficha de restaurante");
@@ -162,67 +160,67 @@ public class VentanaPrincipal extends javax.swing.JFrame  {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFichaRestauranteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFichaRestauranteActionPerformed
-         FichaRestaurante fr = new FichaRestaurante(miSistema);
-            fr.setSize(this.jPMostrar.getWidth(),this.jPMostrar.getHeight());
-            fr.setLocation(1,1);
-            jPMostrar.removeAll();
-            jPMostrar.add(fr,BorderLayout.CENTER);
-            jPMostrar.revalidate();
-            jPMostrar.repaint();        
+
+        FichaRestaurante fr = new FichaRestaurante(miSistema);
+        fr.setSize(this.jPMostrar.getWidth(), this.jPMostrar.getHeight());
+        fr.setLocation(1, 1);
+        jPMostrar.removeAll();
+        jPMostrar.add(fr, BorderLayout.CENTER);
+        jPMostrar.revalidate();
+        jPMostrar.repaint();
     }//GEN-LAST:event_btnFichaRestauranteActionPerformed
 
     private void btnDefinicionSorteoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDefinicionSorteoActionPerformed
-      //if (ae.getSource() == btnDefinicionSorteo) {
-            //creo el panel de evaluar y lo cargo al panel local   
+        //if (ae.getSource() == btnDefinicionSorteo) {
+        //creo el panel de evaluar y lo cargo al panel local   
         VentanaSorteo vs = new VentanaSorteo(miSistema);
-            vs.setSize(this.jPMostrar.getWidth(),this.jPMostrar.getHeight());
-            vs.setLocation(1,1);
-            jPMostrar.removeAll();
-            jPMostrar.add(vs,BorderLayout.CENTER);
-            jPMostrar.revalidate();
-            jPMostrar.repaint();
+        vs.setSize(this.jPMostrar.getWidth(), this.jPMostrar.getHeight());
+        vs.setLocation(1, 1);
+        jPMostrar.removeAll();
+        jPMostrar.add(vs, BorderLayout.CENTER);
+        jPMostrar.revalidate();
+        jPMostrar.repaint();
         //}
     }//GEN-LAST:event_btnDefinicionSorteoActionPerformed
 
     private void btnCrearFichaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearFichaActionPerformed
-            //creo el panel de evaluar y lo cargo al panel local
-            CrearRestaurante r = new CrearRestaurante(miSistema);
-            r.setSize(this.jPMostrar.getWidth(),this.jPMostrar.getHeight());
-            r.setLocation(1,1);
-            jPMostrar.removeAll();
-            jPMostrar.add(r,BorderLayout.CENTER);
-            jPMostrar.revalidate();
-            jPMostrar.repaint();
-        
+        //creo el panel de evaluar y lo cargo al panel local
+        CrearRestaurante r = new CrearRestaurante(miSistema);
+        r.setSize(this.jPMostrar.getWidth(), this.jPMostrar.getHeight());
+        r.setLocation(1, 1);
+        jPMostrar.removeAll();
+        jPMostrar.add(r, BorderLayout.CENTER);
+        jPMostrar.revalidate();
+        jPMostrar.repaint();
+
     }//GEN-LAST:event_btnCrearFichaActionPerformed
 
     private void btnEvaluacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEvaluacionActionPerformed
-            //creo el panel de evaluar y lo cargo al panel local
-            VentanaEvaluacion e = new VentanaEvaluacion(miSistema);
-            e.setSize(this.jPMostrar.getWidth(), this.jPMostrar.getHeight());
-            e.setLocation(1, 1);
-            jPMostrar.removeAll();
-            jPMostrar.add(e, BorderLayout.CENTER);
-            jPMostrar.revalidate();
-            jPMostrar.repaint();
-        
+        //creo el panel de evaluar y lo cargo al panel local
+        VentanaEvaluacion e = new VentanaEvaluacion(miSistema);
+        e.setSize(this.jPMostrar.getWidth(), this.jPMostrar.getHeight());
+        e.setLocation(1, 1);
+        jPMostrar.removeAll();
+        jPMostrar.add(e, BorderLayout.CENTER);
+        jPMostrar.revalidate();
+        jPMostrar.repaint();
+
     }//GEN-LAST:event_btnEvaluacionActionPerformed
 
     private void btnRealizarSorteoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRealizarSorteoActionPerformed
-         //creo el panel de evaluar y lo cargo al panel local
-            RealizarSorteo rs = new RealizarSorteo(miSistema);
-            rs.setSize(this.jPMostrar.getWidth(),this.jPMostrar.getHeight());
-            rs.setLocation(1,1);
-            jPMostrar.removeAll();
-            jPMostrar.add(rs,BorderLayout.CENTER);
-            jPMostrar.revalidate();
-            jPMostrar.repaint();
-        
+        //creo el panel de evaluar y lo cargo al panel local
+        RealizarSorteo rs = new RealizarSorteo(miSistema);
+        rs.setSize(this.jPMostrar.getWidth(), this.jPMostrar.getHeight());
+        rs.setLocation(1, 1);
+        jPMostrar.removeAll();
+        jPMostrar.add(rs, BorderLayout.CENTER);
+        jPMostrar.revalidate();
+        jPMostrar.repaint();
+
     }//GEN-LAST:event_btnRealizarSorteoActionPerformed
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
-        // TODO add your handling code here:
-        jPMostrar.setVisible(false);
+        cargarInicio();
     }//GEN-LAST:event_btnInicioActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -232,7 +230,6 @@ public class VentanaPrincipal extends javax.swing.JFrame  {
     private javax.swing.JButton btnFichaRestaurante;
     private javax.swing.JButton btnInicio;
     private javax.swing.JButton btnRealizarSorteo;
-    private javax.swing.JPanel jPInicio;
     private javax.swing.JPanel jPMostrar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
