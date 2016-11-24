@@ -65,7 +65,7 @@
                   <Component id="btnDefinicionSorteo" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="179" max="32767" attributes="0"/>
               </Group>
-              <Component id="jPMostrar" alignment="0" pref="300" max="32767" attributes="0"/>
+              <Component id="jPMostrar" alignment="0" pref="310" max="32767" attributes="0"/>
               <Component id="jSeparator1" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>

@@ -8,7 +8,6 @@ import obligatorio.Sistema;
 
 public class VentanaPrincipal extends javax.swing.JFrame implements ActionListener {
 
-    
     public VentanaPrincipal(Sistema s) {
         initComponents();
         miSistema = s;
@@ -17,7 +16,7 @@ public class VentanaPrincipal extends javax.swing.JFrame implements ActionListen
         btnEvaluacion.addActionListener(this);
         this.setMinimumSize(new Dimension(500, 500));
         this.setResizable(false);
-        
+
     }
 
     /**
@@ -155,20 +154,30 @@ Sistema miSistema;
         if (ae.getSource() == btnEvaluacion) {
             //creo el panel de evaluar y lo cargo al panel local
             VentanaEvaluacion e = new VentanaEvaluacion(miSistema);
-            e.setSize(this.jPMostrar.getWidth(),this.jPMostrar.getHeight());
-            e.setLocation(1,1);
+            e.setSize(this.jPMostrar.getWidth(), this.jPMostrar.getHeight());
+            e.setLocation(1, 1);
             jPMostrar.removeAll();
-            jPMostrar.add(e,BorderLayout.CENTER);
+            jPMostrar.add(e, BorderLayout.CENTER);
             jPMostrar.revalidate();
             jPMostrar.repaint();
         }
-         if (ae.getSource() == btnCrearFicha) {
+        if (ae.getSource() == btnCrearFicha) {
             //creo el panel de evaluar y lo cargo al panel local
             CrearRestaurante r = new CrearRestaurante(miSistema);
-            r.setSize(this.jPMostrar.getWidth(),this.jPMostrar.getHeight());
-            r.setLocation(1,1);
+            r.setSize(this.jPMostrar.getWidth(), this.jPMostrar.getHeight());
+            r.setLocation(1, 1);
             jPMostrar.removeAll();
-            jPMostrar.add(r,BorderLayout.CENTER);
+            jPMostrar.add(r, BorderLayout.CENTER);
+            jPMostrar.revalidate();
+            jPMostrar.repaint();
+        }
+        if (ae.getSource() == btnFichaRestaurante) {
+            //creo el panel de evaluar y lo cargo al panel local
+            FichaRestaurante f = new FichaRestaurante(miSistema);
+            f.setSize(this.jPMostrar.getWidth(), this.jPMostrar.getHeight());
+            f.setLocation(1, 1);
+            jPMostrar.removeAll();
+            jPMostrar.add(f, BorderLayout.CENTER);
             jPMostrar.revalidate();
             jPMostrar.repaint();
         }
