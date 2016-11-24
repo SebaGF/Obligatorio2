@@ -25,12 +25,16 @@ public class FichaRestaurante extends javax.swing.JPanel {
         miSistema = s;
         ImageIcon iconoConfir = new ImageIcon(getClass().getResource("/Imagenes/confirmar.png"));
         ImageIcon iconoGuardar = new ImageIcon(getClass().getResource("/Imagenes/guardar.png"));
+        ImageIcon iconoError = new ImageIcon(getClass().getResource("/Imagenes/error.png"));
         ImageIcon confirmar = new ImageIcon(iconoConfir.getImage().getScaledInstance(50, -1, Image.SCALE_DEFAULT));
         ImageIcon guardar = new ImageIcon(iconoGuardar.getImage().getScaledInstance(50, -1, Image.SCALE_DEFAULT));
+        error = new ImageIcon(iconoError.getImage().getScaledInstance(22, -1, Image.SCALE_DEFAULT));
         cargarIconos();
         cargarRestaurantes();
         btnConfimarCambiar.setIcon(confirmar);
         btnGuardarCambiar.setIcon(guardar);
+       lblEditadoCorrecto.setForeground(Color.green);
+       lblEditadoCorrecto.setVisible(false);
 
     }
 
@@ -71,35 +75,63 @@ public class FichaRestaurante extends javax.swing.JPanel {
         lblTipoError = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         lstHorariosCambiar = new javax.swing.JList();
+        lblRestauranteError = new javax.swing.JLabel();
+        lblErrorHorarios = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        lblEditadoCorrecto = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(500, 500));
         setPreferredSize(new java.awt.Dimension(500, 500));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Nombre");
+        jLabel1.setText("Nombre (3-20)(*)");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
+        add(txtNombreCambiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 61, -1));
 
-        jLabel2.setText("Direccion");
+        jLabel2.setText("Direccion (7-20)(*)");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 150, -1, -1));
 
         txtDireccionCambiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDireccionCambiarActionPerformed(evt);
             }
         });
+        add(txtDireccionCambiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 150, 85, -1));
 
         jLabel3.setText("Horarios:");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 177, -1, -1));
 
         jLabel4.setText("Dia");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 177, -1, -1));
 
         jLabel5.setText("Hora apertura");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, -1, -1));
 
         jLabel6.setText(":");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 240, 10, -1));
+        add(txtHoraAperturaCambiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, 30, -1));
+
+        txtMinutoAperturaCambiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMinutoAperturaCambiarActionPerformed(evt);
+            }
+        });
+        add(txtMinutoAperturaCambiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, 30, -1));
 
         jLabel7.setText("Hora cierre");
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 220, 84, -1));
+        add(txtMinutoCierreCambiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 240, 30, -1));
+        add(txtHoraCierreCambiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 240, 30, -1));
 
         jLabel8.setText(":");
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 240, 20, -1));
 
-        jLabel10.setText("Tipo de Comida");
+        jLabel10.setText("Tipo de Comida (4-50)(*)");
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 355, -1, -1));
+        add(txtTipoComidaCambiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 360, 107, -1));
 
         jLabel12.setText("Resaurantes");
+        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 0, -1, -1));
 
         lstRestaurantesCambiar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -112,6 +144,8 @@ public class FichaRestaurante extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(lstRestaurantesCambiar);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 23, 455, 119));
 
         btnGuardarCambiar.setBorderPainted(false);
         btnGuardarCambiar.setContentAreaFilled(false);
@@ -128,6 +162,7 @@ public class FichaRestaurante extends javax.swing.JPanel {
                 btnGuardarCambiarActionPerformed(evt);
             }
         });
+        add(btnGuardarCambiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 210, 60, 80));
 
         btnConfimarCambiar.setBorderPainted(false);
         btnConfimarCambiar.setContentAreaFilled(false);
@@ -139,6 +174,20 @@ public class FichaRestaurante extends javax.swing.JPanel {
                 btnConfimarCambiarActionPerformed(evt);
             }
         });
+        add(btnConfimarCambiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 380, -1, -1));
+
+        lblDirecError.setFocusable(false);
+        add(lblDirecError, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 150, 22, 19));
+
+        lblNomError.setFocusable(false);
+        add(lblNomError, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 22, 19));
+
+        lblAperturaError.setFocusable(false);
+        add(lblAperturaError, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 240, 22, 19));
+        add(lblCierreError, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 240, 22, 19));
+
+        lblTipoError.setFocusable(false);
+        add(lblTipoError, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 360, 22, 19));
 
         lstHorariosCambiar.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
@@ -147,140 +196,16 @@ public class FichaRestaurante extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(lstHorariosCambiar);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel12)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addContainerGap())))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jLabel1)
-                .addGap(12, 12, 12)
-                .addComponent(txtNombreCambiar, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblNomError)
-                .addGap(27, 27, 27)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtDireccionCambiar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblDirecError)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(141, 141, 141)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(txtHoraAperturaCambiar, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel6)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtMinutoAperturaCambiar, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lblAperturaError))))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtHoraCierreCambiar, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtMinutoCierreCambiar, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblCierreError)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
-                                .addComponent(btnGuardarCambiar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(42, 42, 42))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel10))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(48, 48, 48)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(txtTipoComidaCambiar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lblTipoError))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(87, 87, 87)
-                                        .addComponent(btnConfimarCambiar))))
-                            .addComponent(jLabel4))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jLabel12)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtNombreCambiar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel2)
-                        .addComponent(txtDireccionCambiar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblDirecError)
-                        .addComponent(lblNomError)))
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblAperturaError))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel6)
-                                    .addComponent(txtHoraAperturaCambiar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtMinutoAperturaCambiar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(1, 1, 1)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel10)
-                            .addComponent(txtTipoComidaCambiar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblTipoError))
-                        .addGap(34, 34, 34)
-                        .addComponent(btnConfimarCambiar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel8)
-                                .addComponent(txtHoraCierreCambiar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtMinutoCierreCambiar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lblCierreError)
-                            .addComponent(btnGuardarCambiar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(65, Short.MAX_VALUE))
-        );
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 205, 130, 140));
+        add(lblRestauranteError, new org.netbeans.lib.awtextra.AbsoluteConstraints(472, 57, 22, 19));
+        add(lblErrorHorarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, 22, 19));
+
+        jLabel9.setText("Horas validas entre 00:00 23:59");
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 270, -1, -1));
+
+        lblEditadoCorrecto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblEditadoCorrecto.setText("Se edito correctamente");
+        add(lblEditadoCorrecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 430, 380, 20));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtDireccionCambiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionCambiarActionPerformed
@@ -288,44 +213,85 @@ public class FichaRestaurante extends javax.swing.JPanel {
     }//GEN-LAST:event_txtDireccionCambiarActionPerformed
 
     private void btnConfimarCambiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfimarCambiarActionPerformed
+        Restaurante r;
+        boolean nombreOk;
+        boolean direccionOk;
+        boolean tipoComidaOk;
+        boolean restauranteOk;
+        nombreOk = false;
+        direccionOk = false;
+        tipoComidaOk = false;
+        restauranteOk = false;
         if (lstRestaurantesCambiar.getSelectedIndex() > -1) {
-
-            Restaurante r;
             r = miSistema.getLstRestaurantes().get(lstRestaurantesCambiar.getSelectedIndex());
-            boolean cambio;
+            restauranteOk = true;
+            lblRestauranteError.setVisible(false);
+        } else {
+            restauranteOk = false;
+            lblRestauranteError.setVisible(true);
 
-            cambio = false;
-            if (!(r.getNombre().equalsIgnoreCase(txtNombreCambiar.getText()))
-                    || !(r.getDireccion().equalsIgnoreCase(txtDireccionCambiar.getText()))
-                    || !(r.getHorarios().getHorarios().get(0).equals(txtHoraAperturaCambiar.getText()))
-                    || !(r.getHorarios().getHorarios().get(1).equals(txtHoraCierreCambiar.getText()))
-                    || !(r.getTipoComida().equalsIgnoreCase(txtTipoComidaCambiar.getText()))) {
-                cambio = true;
-            }
-            if (miSistema.validarStringNoVacio(txtNombreCambiar.getText(), 1, Integer.MAX_VALUE)) {
-                if (miSistema.validarStringNoVacio(txtDireccionCambiar.getText(), 1, Integer.MAX_VALUE)) {
-                    if (miSistema.validarFecha(txtHoraAperturaCambiar.getText())) {
-                        if (miSistema.validarFecha(txtHoraCierreCambiar.getText())) {
-                            if (miSistema.validarStringNoVacio(txtTipoComidaCambiar.getText(), 1, Integer.MAX_VALUE)) {
-                                r.setNombre(txtNombreCambiar.getText());
-                                r.setDireccion(txtDireccionCambiar.getText());
-                                //r.getHorarios().cargarHorario((String) cmbDiaCambiar.getSelectedItem(), txtHoraAperturaCambiar.getText(), txtHoraCierreCambiar.getText());
-                                r.setTipoComida(txtTipoComidaCambiar.getText());
-
-                                if (cambio) {
-
-                                    txtNombreCambiar.setText("");
-                                    txtDireccionCambiar.setText("");
-                                    txtHoraAperturaCambiar.setText("");
-                                    txtHoraCierreCambiar.setText("");
-                                    txtTipoComidaCambiar.setText("");
-                                }
-                            }
-                        }
-                    }
-                }
-            }
         }
+
+        if (miSistema.validarStringNoVacio(txtNombreCambiar.getText(), 1, Integer.MAX_VALUE) && restauranteOk) {
+            r = miSistema.getLstRestaurantes().get(lstRestaurantesCambiar.getSelectedIndex());
+
+            r.setNombre(txtNombreCambiar.getText());
+            nombreOk = true;
+            lblNomError.setVisible(false);
+        } else {
+            nombreOk = false;
+            lblNomError.setVisible(true);
+        }
+
+        if (miSistema.validarStringNoVacio(txtDireccionCambiar.getText(), 1, Integer.MAX_VALUE) && restauranteOk) {
+            r = miSistema.getLstRestaurantes().get(lstRestaurantesCambiar.getSelectedIndex());
+
+            if (miSistema.estaRestaurante(txtDireccionCambiar.getText())) {
+                if (txtDireccionCambiar.getText().equalsIgnoreCase(r.getDireccion())) {
+                    r.setDireccion(txtDireccionCambiar.getText());
+                    direccionOk = true;
+                    lblDirecError.setVisible(false);
+                } else {
+                    lblDirecError.setVisible(true);
+                    direccionOk = false;
+                }
+            } else {
+                r.setDireccion(txtDireccionCambiar.getText());
+                lblDirecError.setVisible(false);
+                direccionOk = true;
+            }
+        } else {
+            lblDirecError.setVisible(true);
+
+        }
+
+        if (miSistema.validarStringNoVacio(txtTipoComidaCambiar.getText(), 1, Integer.MAX_VALUE) && restauranteOk) {
+            r = miSistema.getLstRestaurantes().get(lstRestaurantesCambiar.getSelectedIndex());
+
+            r.setTipoComida(txtTipoComidaCambiar.getText());
+            tipoComidaOk = true;
+            lblTipoError.setVisible(false);
+        } else {
+            tipoComidaOk = false;
+            lblTipoError.setVisible(true);
+        }
+
+        if (nombreOk && direccionOk && tipoComidaOk && restauranteOk) {
+            txtNombreCambiar.setText("");
+            txtDireccionCambiar.setText("");
+            txtHoraAperturaCambiar.setText("");
+            txtMinutoAperturaCambiar.setText("");
+            txtHoraCierreCambiar.setText("");
+            txtMinutoCierreCambiar.setText("");
+            txtTipoComidaCambiar.setText("");
+            cargarRestaurantes();
+            cargarIconos();
+            lblEditadoCorrecto.setVisible(true);
+
+        }else{
+            lblEditadoCorrecto.setVisible(false);
+        }
+
 
     }//GEN-LAST:event_btnConfimarCambiarActionPerformed
 
@@ -335,11 +301,18 @@ public class FichaRestaurante extends javax.swing.JPanel {
 
     private void lstRestaurantesCambiarValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstRestaurantesCambiarValueChanged
         Restaurante r;
-        r = miSistema.getLstRestaurantes().get(lstRestaurantesCambiar.getSelectedIndex());
-        txtNombreCambiar.setText(r.getNombre());
-        txtDireccionCambiar.setText(r.getDireccion());
-        txtTipoComidaCambiar.setText(r.getTipoComida());
-        cargarHorarios(r);
+
+        try {
+
+            r = (Restaurante) lstRestaurantesCambiar.getSelectedValue();
+
+            txtNombreCambiar.setText(r.getNombre());
+            txtDireccionCambiar.setText(r.getDireccion());
+            txtTipoComidaCambiar.setText(r.getTipoComida());
+            cargarHorarios(r);
+        } catch (Exception e) {
+
+        }
 
 
     }//GEN-LAST:event_lstRestaurantesCambiarValueChanged
@@ -360,7 +333,6 @@ public class FichaRestaurante extends javax.swing.JPanel {
                 splitHoraFin = splitHorario[1].split(":");
             }
 
-            
             txtHoraAperturaCambiar.setText(splitHoraInicio[0]);
             txtMinutoAperturaCambiar.setText(splitHoraInicio[1]);
             txtHoraCierreCambiar.setText(splitHoraFin[0]);
@@ -374,21 +346,61 @@ public class FichaRestaurante extends javax.swing.JPanel {
     }//GEN-LAST:event_btnGuardarCambiarMouseClicked
 
     private void btnGuardarCambiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarCambiarActionPerformed
-        if (lstRestaurantesCambiar.getSelectedIndex() > -1) {
+        Restaurante r = new Restaurante("", "", new ManejadorHorario(), "");
+        boolean restauranteOk;
+        boolean horariosOk;
+        boolean horaAperturaOk;
+        boolean horaCierreOk;
+        restauranteOk = false;
+        horaAperturaOk = false;
+        horaCierreOk = false;
+        horariosOk = false;
 
-            if (lstHorariosCambiar.getSelectedIndex() > -1) {
-                Restaurante r;
-                r = miSistema.getLstRestaurantes().get(lstRestaurantesCambiar.getSelectedIndex());
-                
-                Map.Entry<String, String> horario = r.getHorarios().getHorarios().get(lstHorariosCambiar.getSelectedIndex());
-                
-                String horaInicial = txtHoraAperturaCambiar.getText()+":"+txtMinutoAperturaCambiar.getText();
-                String horaCierre = txtHoraCierreCambiar.getText()+":"+txtMinutoCierreCambiar.getText();
-                r.getHorarios().cargarHorario(horario.getKey(),horaInicial, horaCierre);
-                cargarHorarios(r);
-            }
+        if (lstRestaurantesCambiar.getSelectedIndex() > -1) {
+            restauranteOk = true;
+            lblRestauranteError.setVisible(false);
+        } else {
+            restauranteOk = false;
+            lblRestauranteError.setVisible(true);
+        }
+        if (lstHorariosCambiar.getSelectedIndex() > -1 && restauranteOk) {
+            horariosOk = true;
+            lblErrorHorarios.setVisible(false);
+        } else {
+            horariosOk = false;
+            lblErrorHorarios.setVisible(true);
+        }
+
+        if (r.getHorarios().validarHorario(txtHoraAperturaCambiar.getText() + ":" + txtMinutoAperturaCambiar.getText()) && restauranteOk && horariosOk) {
+            horaAperturaOk = true;
+            lblAperturaError.setVisible(false);
+        } else {
+            lblAperturaError.setVisible(true);
+            horaAperturaOk = false;
+        }
+
+        if (r.getHorarios().validarHorario(txtHoraCierreCambiar.getText() + ":" + txtMinutoCierreCambiar.getText()) && restauranteOk && horariosOk) {
+            lblCierreError.setVisible(false);
+            horaCierreOk = true;
+        } else {
+            lblCierreError.setVisible(true);
+            horaCierreOk = false;
+        }
+
+        if (horaCierreOk && horaAperturaOk) {
+            r = miSistema.getLstRestaurantes().get(lstRestaurantesCambiar.getSelectedIndex());
+            Map.Entry<String, String> horario = r.getHorarios().getHorarios().get(lstHorariosCambiar.getSelectedIndex());
+
+            String horaInicial = txtHoraAperturaCambiar.getText() + ":" + txtMinutoAperturaCambiar.getText();
+            String horaCierre = txtHoraCierreCambiar.getText() + ":" + txtMinutoCierreCambiar.getText();
+            r.getHorarios().cargarHorario(horario.getKey(), horaInicial, horaCierre);
+            cargarHorarios(r);
         }
     }//GEN-LAST:event_btnGuardarCambiarActionPerformed
+
+    private void txtMinutoAperturaCambiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMinutoAperturaCambiarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMinutoAperturaCambiarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -404,12 +416,16 @@ public class FichaRestaurante extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblAperturaError;
     private javax.swing.JLabel lblCierreError;
     private javax.swing.JLabel lblDirecError;
+    private javax.swing.JLabel lblEditadoCorrecto;
+    private javax.swing.JLabel lblErrorHorarios;
     private javax.swing.JLabel lblNomError;
+    private javax.swing.JLabel lblRestauranteError;
     private javax.swing.JLabel lblTipoError;
     private javax.swing.JList lstHorariosCambiar;
     private javax.swing.JList lstRestaurantesCambiar;
@@ -422,7 +438,6 @@ public class FichaRestaurante extends javax.swing.JPanel {
     private javax.swing.JTextField txtTipoComidaCambiar;
     // End of variables declaration//GEN-END:variables
     private Sistema miSistema;
-    private ImageIcon vacia;
     private ImageIcon error;
 
     public void cargarRestaurantes() {
@@ -440,11 +455,15 @@ public class FichaRestaurante extends javax.swing.JPanel {
         lblAperturaError.setIcon(error);
         lblCierreError.setIcon(error);
         lblTipoError.setIcon(error);
+        lblRestauranteError.setIcon(error);
+        lblErrorHorarios.setIcon(error);
         lblNomError.setVisible(false);
         lblDirecError.setVisible(false);
         lblAperturaError.setVisible(false);
         lblCierreError.setVisible(false);
         lblTipoError.setVisible(false);
+        lblRestauranteError.setVisible(false);
+        lblErrorHorarios.setVisible(false);
     }
 
     public void cargarHorarios(Restaurante r) {
