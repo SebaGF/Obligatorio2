@@ -115,8 +115,19 @@ public class FichaRestaurante extends javax.swing.JPanel {
 
         btnGuardarCambiar.setBorderPainted(false);
         btnGuardarCambiar.setContentAreaFilled(false);
+        btnGuardarCambiar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnGuardarCambiar.setFocusable(false);
         btnGuardarCambiar.setRolloverEnabled(false);
+        btnGuardarCambiar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnGuardarCambiarMouseClicked(evt);
+            }
+        });
+        btnGuardarCambiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarCambiarActionPerformed(evt);
+            }
+        });
 
         btnConfimarCambiar.setBorderPainted(false);
         btnConfimarCambiar.setContentAreaFilled(false);
@@ -349,10 +360,7 @@ public class FichaRestaurante extends javax.swing.JPanel {
                 splitHoraFin = splitHorario[1].split(":");
             }
 
-            System.out.println("Hora inicio" + splitHoraInicio[0]);
-            System.out.println("minuto inicio" + splitHoraInicio[1]);
-            System.out.println("Hora cierre" + splitHoraFin[0]);
-            System.out.println("minutos cierre" + splitHoraFin[1]);
+            
             txtHoraAperturaCambiar.setText(splitHoraInicio[0]);
             txtMinutoAperturaCambiar.setText(splitHoraInicio[1]);
             txtHoraCierreCambiar.setText(splitHoraFin[0]);
@@ -360,6 +368,27 @@ public class FichaRestaurante extends javax.swing.JPanel {
 
         }
     }//GEN-LAST:event_lstHorariosCambiarValueChanged
+
+    private void btnGuardarCambiarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarCambiarMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGuardarCambiarMouseClicked
+
+    private void btnGuardarCambiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarCambiarActionPerformed
+        if (lstRestaurantesCambiar.getSelectedIndex() > -1) {
+
+            if (lstHorariosCambiar.getSelectedIndex() > -1) {
+                Restaurante r;
+                r = miSistema.getLstRestaurantes().get(lstRestaurantesCambiar.getSelectedIndex());
+                
+                Map.Entry<String, String> horario = r.getHorarios().getHorarios().get(lstHorariosCambiar.getSelectedIndex());
+                
+                String horaInicial = txtHoraAperturaCambiar.getText()+":"+txtMinutoAperturaCambiar.getText();
+                String horaCierre = txtHoraCierreCambiar.getText()+":"+txtMinutoCierreCambiar.getText();
+                r.getHorarios().cargarHorario(horario.getKey(),horaInicial, horaCierre);
+                cargarHorarios(r);
+            }
+        }
+    }//GEN-LAST:event_btnGuardarCambiarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -419,6 +448,7 @@ public class FichaRestaurante extends javax.swing.JPanel {
     }
 
     public void cargarHorarios(Restaurante r) {
+        lstHorariosCambiar.removeAll();
         DefaultListModel modelo = new DefaultListModel();
         Iterator it = r.getHorarios().getHorarios().iterator();
         while (it.hasNext()) {

@@ -30,8 +30,8 @@ public class ManejadorHorario {
     public ManejadorHorario() {
 
         for (int i = 0; i < dias.length; i++) {
-
-            Map.Entry<String, String> horario = new AbstractMap.SimpleEntry<>(dias[i], new Horario().getFormatoHorario());
+            Horario miHorario = new Horario();
+            Map.Entry<String, String> horario = new AbstractMap.SimpleEntry<>(dias[i], miHorario.getFormatoHorario());
             this.horarios.add(horario);
         }
 

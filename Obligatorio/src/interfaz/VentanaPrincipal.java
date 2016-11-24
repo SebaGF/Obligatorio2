@@ -129,7 +129,7 @@ public class VentanaPrincipal extends javax.swing.JFrame  {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPMostrar, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+            .addComponent(jPMostrar, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
             .addComponent(jSeparator1)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(1, 1, 1)
@@ -162,13 +162,19 @@ public class VentanaPrincipal extends javax.swing.JFrame  {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFichaRestauranteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFichaRestauranteActionPerformed
-        // TODO add your handling code here:        
+         FichaRestaurante fr = new FichaRestaurante(miSistema);
+            fr.setSize(this.jPMostrar.getWidth(),this.jPMostrar.getHeight());
+            fr.setLocation(1,1);
+            jPMostrar.removeAll();
+            jPMostrar.add(fr,BorderLayout.CENTER);
+            jPMostrar.revalidate();
+            jPMostrar.repaint();        
     }//GEN-LAST:event_btnFichaRestauranteActionPerformed
 
     private void btnDefinicionSorteoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDefinicionSorteoActionPerformed
       //if (ae.getSource() == btnDefinicionSorteo) {
-            //creo el panel de evaluar y lo cargo al panel local
-            VentanaSorteo vs = new VentanaSorteo(miSistema);
+            //creo el panel de evaluar y lo cargo al panel local   
+        VentanaSorteo vs = new VentanaSorteo(miSistema);
             vs.setSize(this.jPMostrar.getWidth(),this.jPMostrar.getHeight());
             vs.setLocation(1,1);
             jPMostrar.removeAll();

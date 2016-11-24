@@ -33,7 +33,7 @@ public class Horario {
     public Horario() {
         this.horaInicio = 0;
         this.horaFin = 0;
-        this.formatoHorario = horaInicio+ " - " + horaFin;
+        this.formatoHorario = horaInicio+ ":"+horaInicio+ " - " + horaFin + ":" + horaFin;
     }
 
     public Horario(int horaInicio, int horaFin) {
