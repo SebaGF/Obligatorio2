@@ -216,7 +216,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPMostrar.add(rs, BorderLayout.CENTER);
         jPMostrar.revalidate();
         jPMostrar.repaint();
-
     }//GEN-LAST:event_btnRealizarSorteoActionPerformed
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
