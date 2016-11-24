@@ -178,7 +178,7 @@ public class VentanaSorteo extends javax.swing.JPanel {
             cantGanadoresOk = false;
             lblCantGanadError.setVisible(true);
         }
-        if (miSistema.comparaFechas(txtFechaIn.getText(), txtFechaCi.getText())) {
+        if (miSistema.comparaFechas(txtFechaIn.getText(), txtFechaCi.getText()) && fInicioOk && fCierreOk) {
             fechasOk = true;
             lblFInicioError.setVisible(false);
             lblHCierreError.setVisible(false);
