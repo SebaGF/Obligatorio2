@@ -55,43 +55,46 @@ public class CrearRestaurante extends javax.swing.JPanel {
         lblErrorHAber1 = new javax.swing.JLabel();
         lblErrorTipoC = new javax.swing.JLabel();
         lblCorrecto = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
 
+        setMaximumSize(new java.awt.Dimension(500, 500));
+        setMinimumSize(new java.awt.Dimension(500, 500));
+        setPreferredSize(new java.awt.Dimension(500, 500));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Nombre");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 43, -1, -1));
+        jLabel1.setText("Nombre (3 - 20)(*)");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
 
-        
-        add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 76, -1));
+        add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 40, 200, 20));
 
-        jLabel2.setText("Direccion");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, -1, -1));
+        jLabel2.setText("Dirección (7 - 20) (*)");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
 
-        
-        add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 40, 147, -1));
+        add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 200, -1));
 
         jLabel3.setText("Horarios:");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 81, -1, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, -1, -1));
 
+        cbxDias.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         cbxDias.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(cbxDias, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 101, -1, -1));
+        add(cbxDias, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, -1, -1));
 
         jLabel4.setText("Dia");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 81, -1, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, -1, -1));
 
-        jLabel5.setText("Hora abertura");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, -1, -1));
-        add(txtHabertura, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 20, -1));
+        jLabel5.setText("Hora apertura");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 170, -1, -1));
+        add(txtHabertura, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 190, 20, 20));
 
         jLabel6.setText("Hora cierre");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, -1, -1));
-        add(txtHcierre, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 100, 20, -1));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, -1, -1));
+        add(txtHcierre, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 190, 20, -1));
 
-        jLabel7.setText("Tipo de comida");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 153, -1, -1));
+        jLabel7.setText("Tipo de comida (4 - 50) (*)");
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, -1, -1));
 
-        
-        add(txtTipoComida, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, 119, -1));
+        add(txtTipoComida, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, 200, -1));
 
         btnCrearRest.setBorderPainted(false);
         btnCrearRest.setContentAreaFilled(false);
@@ -103,14 +106,14 @@ public class CrearRestaurante extends javax.swing.JPanel {
                 btnCrearRestActionPerformed(evt);
             }
         });
-        add(btnCrearRest, new org.netbeans.lib.awtextra.AbsoluteConstraints(192, 188, 79, 58));
+        add(btnCrearRest, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 310, 79, 58));
 
         jLabel8.setText(" :");
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, -1, -1));
-        add(txtHabertura2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, 20, -1));
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, -1, -1));
+        add(txtHabertura2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 190, 20, -1));
 
         jLabel9.setText(" :");
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 100, 20, 20));
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, 20, 20));
 
         btnGuardar.setBorderPainted(false);
         btnGuardar.setContentAreaFilled(false);
@@ -122,16 +125,23 @@ public class CrearRestaurante extends javax.swing.JPanel {
                 btnGuardarActionPerformed(evt);
             }
         });
-        add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 60, 60));
-        add(txtHcierre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, 20, -1));
-        add(lblErrorDir, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 40, 22, 19));
-        add(lblErrorNom1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 40, 22, 19));
-        add(lblErrorHCierre, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 100, 22, 19));
-        add(lblErrorHAber1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, 22, 19));
-        add(lblErrorTipoC, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 150, 22, 19));
+        add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 170, 60, 60));
+        add(txtHcierre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, 20, -1));
+        add(lblErrorDir, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 100, 22, 19));
+        add(lblErrorNom1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 40, 22, 19));
+        add(lblErrorHCierre, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 190, 22, 19));
+        add(lblErrorHAber1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 190, 22, 19));
+        add(lblErrorTipoC, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 280, 20, 19));
 
         lblCorrecto.setForeground(new java.awt.Color(255, 0, 0));
-        add(lblCorrecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(87, 252, 239, 17));
+        lblCorrecto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        add(lblCorrecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(-1, 380, 510, 17));
+
+        jLabel10.setText("00 : 00 - 23  : 59");
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 220, -1, -1));
+
+        jLabel12.setText("Horas validas entre");
+        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
 
@@ -146,21 +156,21 @@ public class CrearRestaurante extends javax.swing.JPanel {
         tipoComidaOk = false;
         estaRest = false;
 
-        if (miSistema.validarStringNoVacio(txtNombre.getText(), 0, 20)) {
+        if (miSistema.validarStringNoVacio(txtNombre.getText(), 2, 21)) {
             nombreOk = true;
             lblErrorNom1.setVisible(false);
         } else {
             nombreOk = false;
             lblErrorNom1.setVisible(true);
         }
-        if (miSistema.validarStringNoVacio(txtDireccion.getText(), 0, 20)) {
+        if (miSistema.validarStringNoVacio(txtDireccion.getText(), 6, 21)) {
             direccionOk = true;
             lblErrorDir.setVisible(false);
         } else {
             direccionOk = false;
             lblErrorDir.setVisible(true);
         }
-        if (miSistema.validarStringNoVacio(txtTipoComida.getText(), 0, 30)) {
+        if (miSistema.validarStringNoVacio(txtTipoComida.getText(), 3, 51)) {
             tipoComidaOk = true;
             lblErrorTipoC.setVisible(false);
         } else {
@@ -213,14 +223,14 @@ public class CrearRestaurante extends javax.swing.JPanel {
         abertura = txtHabertura.getText() + ":" + txtHabertura2.getText();
         cierre = txtHcierre.getText() + ":" + txtHcierre1.getText();
 
-        if (mh.validarHorario(abertura) /*&& !txtHabertura.getText().equals("") && !txtHabertura2.getText().equals("")*/) {
+        if (mh.validarHorario(abertura)) {
             horaAberOk = true;
             lblErrorHAber1.setVisible(false);
         } else {
             horaAberOk = false;
             lblErrorHAber1.setVisible(true);
         }
-        if (mh.validarHorario(cierre) && !txtHcierre.getText().equals("") && !txtHcierre1.getText().equals("")) {
+        if (mh.validarHorario(cierre)) {
             horaCierreOk = true;
             lblErrorHCierre.setVisible(false);
         } else {
@@ -246,6 +256,8 @@ public class CrearRestaurante extends javax.swing.JPanel {
     private javax.swing.JButton btnGuardar;
     private javax.swing.JComboBox cbxDias;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

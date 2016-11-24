@@ -168,12 +168,12 @@ public class VentanaEvaluacion extends javax.swing.JPanel {
                 btnEvaluarActionPerformed(evt);
             }
         });
-        add(btnEvaluar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 350, 100, 90));
+        add(btnEvaluar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 350, 100, 90));
 
         jPDatosOpcionales.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         jPDatosOpcionales.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Nombre (5 - 21)");
+        jLabel1.setText("Nombre (3 - 20)");
         jPDatosOpcionales.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
 
         txtAReseña.setColumns(10);
@@ -182,20 +182,20 @@ public class VentanaEvaluacion extends javax.swing.JPanel {
         jScrollPane2.setViewportView(txtAReseña);
 
         jPDatosOpcionales.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 188, 57));
-        jPDatosOpcionales.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 100, 20));
-        jPDatosOpcionales.add(txtMail, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 100, 20));
+        jPDatosOpcionales.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 120, 20));
+        jPDatosOpcionales.add(txtMail, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 120, 20));
 
-        jLabel2.setText("Email (6 - 21)");
+        jLabel2.setText("Email (6 - 20)");
         jPDatosOpcionales.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
 
-        lbResenia.setText("Reseña (6 - 201)");
+        lbResenia.setText("Reseña (6 - 200)");
         jPDatosOpcionales.add(lbResenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
 
         cmbDominio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "@Hotmail.com", "@Gmail.com" }));
-        jPDatosOpcionales.add(cmbDominio, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 120, -1, -1));
+        jPDatosOpcionales.add(cmbDominio, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 120, -1, -1));
         jPDatosOpcionales.add(lblErrorResenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 30, -1, -1));
-        jPDatosOpcionales.add(lblErrorNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, 40, 30));
-        jPDatosOpcionales.add(lblErrorEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 120, -1, -1));
+        jPDatosOpcionales.add(lblErrorNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, 40, 40));
+        jPDatosOpcionales.add(lblErrorEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 110, 40, 40));
 
         add(jPDatosOpcionales, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 430, 160));
 
@@ -268,7 +268,7 @@ public class VentanaEvaluacion extends javax.swing.JPanel {
             lblErrorEstrella.setVisible(true);
         }
         if (datosOpcionales) {
-            if (miSistema.validarStringNoVacio(txtNombre.getText(), 4, 21)) {
+            if (miSistema.validarStringNoVacio(txtNombre.getText(), 2, 21)) {
                 lblErrorNombre.setVisible(false);
                 nombreOk = true;
             } else {
@@ -283,9 +283,9 @@ public class VentanaEvaluacion extends javax.swing.JPanel {
                 reseniaOk = false;
             }
             if (miSistema.validarStringNoVacio(txtMail.getText(), 5, 21)) {
+                lblErrorEmail.setVisible(false);
                 if (listaRestaurantesOk) {
                     Restaurante r = miSistema.getLstRestaurantes().get(lstRestaurantes.getSelectedIndex());
-                    System.out.println(miSistema.estaEvaluacionSorteo(txtMail.getText(), r.getDireccion()));
                     if (!miSistema.estaEvaluacionSorteo(txtMail.getText(), r.getDireccion())) {
                         mailOk = true;
                         lblErrorEmail.setVisible(false);
